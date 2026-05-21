@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ตารางปฏิบัติงาน มิถุนายน 2569</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #800020;
+            --burgundy-dark: #5a0016;
+            --burgundy-light: #a8002a;
+            --gold: #c9973a;
+            --gold-light: #f0d080;
+            --gold-pale: #fdf6e3;
+            --surface: #ffffff;
+            --surface-alt: #fafaf8;
+            --border: #e8e2d5;
+            --text-primary: #1e1a16;
+            --text-secondary: #5c5449;
+            --text-muted: #9c9287;
+
+            /* Status colors */
+            --col-morning: #f0f9f0;
+            --col-morning-border: #4ade80;
+            --col-morning-text: #166534;
+            --col-evening: #eef2ff;
+            --col-evening-border: #818cf8;
+            --col-evening-text: #3730a3;
+            --col-off: #fef9ec;
+            --col-off-border: #fbbf24;
+            --col-off-text: #92400e;
+            --col-sick: #eff6ff;
+            --col-sick-border: #60a5fa;
+            --col-sick-text: #1e40af;
+            --col-special: #f5f3ff;
+            --col-special-border: #a78bfa;
+            --col-special-text: #5b21b6;
+            --col-vacation: #ecfdf5;
+            --col-vacation-border: #34d399;
+            --col-vacation-text: #065f46;
+            --col-holiday: #800020;
+            --col-work: #f0fdf4;
+            --col-work-border: #22c55e;
+            --col-work-text: #14532d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: #f5f0e8;
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        /* ─── HEADER ─────────────────────────────────────── */
+        header {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 50%, #b8002a 100%);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 30px,
+                rgba(255,255,255,0.02) 30px,
+                rgba(255,255,255,0.02) 60px
+            );
+        }
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 28px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .header-icon {
+            width: 52px; height: 52px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+        }
+        .header-title h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.3px;
+        }
+        .header-title p {
+            font-size: 13px;
+            color: var(--gold-light);
+            margin-top: 3px;
+        }
+        .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-header {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-print {
+            background: rgba(255,255,255,0.95);
+            color: var(--text-primary);
+        }
+        .btn-print:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .btn-reset {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-reset:hover { background: rgba(255,255,255,0.2); }
+
+        /* ─── MAIN ───────────────────────────────────────── */
+        main {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px 24px 60px;
+        }
+
+        /* ─── STATS STRIP ────────────────────────────────── */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .stat-icon {
+            width: 44px; height: 44px;
+            border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .stat-icon.green { background: #f0fdf4; }
+        .stat-icon.blue { background: #eff6ff; }
+        .stat-icon.amber { background: #fffbeb; }
+        .stat-icon.rose { background: #fff1f2; }
+        .stat-label {  color: var(--text-muted); font-weight: 500; }
+        .stat-value { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-top: 2px; }
+
+        /* ─── VIEW SWITCHER ──────────────────────────────── */
+        .view-switcher {
+            display: inline-flex;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 20px;
+            border-radius: 9px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .view-btn.active {
+            background: var(--burgundy);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(128,0,32,0.3);
+        }
+
+        /* ─── ROSTER CARD ────────────────────────────────── */
+        .roster-card {
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .roster-card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(to right, var(--gold-pale), #fff);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .roster-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .roster-card-title::before {
+            content: '';
+            width: 4px; height: 18px;
+            background: var(--burgundy);
+            border-radius: 2px;
+        }
+        .roster-hint {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .legend-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .legend-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        /* ─── TABLE SCROLL WRAPPER ───────────────────────── */
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .table-scroll::-webkit-scrollbar { height: 6px; }
+        .table-scroll::-webkit-scrollbar-track { background: #f5f0e8; }
+        .table-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+        /* ─── ROSTER TABLE ───────────────────────────────── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            /* Each day column: 36px wide */
+        }
+
+        /* Fixed name column */
+        .col-name {
+            position: sticky;
+            left: 0;
+            background: inherit;
+            z-index: 10;
+            min-width: 180px;
+            max-width: 180px;
+            padding: 4px 8px;
+            box-shadow: 3px 0 8px rgba(0,0,0,0.06);
+        }
+
+        /* Day columns */
+        .col-day {
+            width: 36px;
+            min-width: 36px;
+            max-width: 36px;
+            text-align: center;
+            padding: 0;
+        }
+
+        /* Summary columns */
+        .col-summary {
+            min-width: 64px;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        /* ── Header rows ── */
+        .thead-dow {
+            background: var(--burgundy);
+        }
+        .thead-dow .col-name {
+            background: var(--burgundy);
+            color: rgba(255,255,255,0.9);
+            font-size: 12px;
+            font-weight: 700;
+            height: 36px;
+        }
+        .thead-dow .col-day {
+            color: rgba(255,255,255,0.85);
+            font-size: 11px;
+            font-weight: 700;
+            height: 36px;
+            vertical-align: middle;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .thead-dow .col-day.weekend {
+            background: rgba(0,0,0,0.15);
+            color: var(--gold-light);
+        }
+        .thead-dow .col-summary {
+            color: rgba(255,255,255,0.8);
+            font-size: 10px;
+            font-weight: 700;
+            height: 36px;
+            vertical-align: middle;
+        }
+
+        .thead-date {
+            background: var(--gold-pale);
+            border-bottom: 2px solid var(--gold-light);
+        }
+        .thead-date .col-name {
+            background: var(--gold-pale);
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-primary) !important;
+            height: 56px;
+            line-height: 1.25;
+            text-align: center;
+            vertical-align: middle;
+            white-space: normal;
+            word-break: break-word;
+            padding: 8px 10px;
+            border-right: 1px solid var(--border);
+        }
+        .thead-date .col-day {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            height: 28px;
+            vertical-align: middle;
+            border-right: 1px solid rgba(212,175,55,0.25);
+        }
+        .thead-date .col-day.weekend {
+            background: rgba(201,151,58,0.08);
+            color: var(--burgundy);
+        }
+        .thead-date .col-day.holiday-co {
+            background: rgba(128,0,32,0.08);
+            color: var(--burgundy);
+            font-weight: 800;
+        }
+        .thead-date .col-summary {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            height: 28px;
+            vertical-align: middle;
+        }
+
+        /* ── Employee rows ── */
+        tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s;
+        }
+        tbody tr:hover { background: #fdf9f2; }
+        tbody tr:last-child { border-bottom: none; }
+
+        .emp-cell {
+            height: 46px;
+            vertical-align: middle;
+            border-right: 1px solid var(--border);
+        }
+        .emp-cell.col-name {
+            background: var(--surface);
+        }
+        tbody tr:hover .emp-cell.col-name {
+            background: #fdf9f2;
+        }
+
+        .emp-name-inner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .emp-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .emp-name-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ── Shift cell button ── */
+        .shift-cell {
+            vertical-align: middle;
+            padding: 4px 2px;
+            border-right: 1px solid rgba(232,226,213,0.6);
+        }
+        .shift-cell.weekend {
+            background: rgba(201,151,58,0.04);
+            border-right-color: rgba(201,151,58,0.2);
+        }
+
+        .shift-btn {
+            width: 32px; height: 38px;
+            border-radius: 7px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s;
+            margin: 0 auto;
+        }
+        .shift-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Shift button variants */
+        .sb-empty { background: transparent; color: #d0c8bc; border-color: transparent; }
+        .sb-empty:hover { background: #f5f0e8; border-color: #d0c8bc; }
+        .sb-work { background: var(--col-work); color: var(--col-work-text); border-color: var(--col-work-border); }
+        .sb-shift_morning { background: #f0faf5; color: #166534; border-color: #86efac; }
+        .sb-shift_evening { background: var(--col-evening); color: var(--col-evening-text); border-color: var(--col-evening-border); }
+        .sb-off { background: var(--col-off); color: var(--col-off-text); border-color: var(--col-off-border); }
+        .sb-leave_sick { background: var(--col-sick); color: var(--col-sick-text); border-color: var(--col-sick-border); }
+        .sb-leave_personal { background: #fff7ed; color: #9a3412; border-color: #fdba74; }
+        .sb-leave_special { background: var(--col-special); color: var(--col-special-text); border-color: var(--col-special-border); }
+        .sb-leave_vacation { background: var(--col-vacation); color: var(--col-vacation-text); border-color: var(--col-vacation-border); }
+        .sb-holiday_co { background: var(--col-holiday); color: #fff; border-color: var(--col-holiday); }
+
+        /* ── Summary cells ── */
+        .sum-cell {
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 8px;
+            border-right: 1px solid var(--border);
+        }
+        .sum-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 24px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 0 6px;
+        }
+        .sum-work { background: #f0fdf4; color: #166534; }
+        .sum-off  { background: #fffbeb; color: #92400e; }
+        .sum-leave{ background: #eff6ff; color: #1e40af; }
+
+        /* ─── EMPLOYEE SUMMARY CARDS ─────────────────────── */
+        .summary-section { margin-top: 28px; }
+        .summary-heading {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .emp-summary-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .emp-summary-top {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .emp-avatar {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .emp-summary-name { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+        .emp-summary-role { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+        .emp-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+        .emp-stat-item {
+            padding: 10px 12px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+        .emp-stat-item:last-child { border-right: none; }
+        .emp-stat-num { font-size: 18px; font-weight: 800; }
+        .emp-stat-lbl { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+        .color-green { color: #16a34a; }
+        .color-amber { color: #d97706; }
+        .color-blue  { color: #2563eb; }
+
+        /* ─── CALENDAR VIEW ──────────────────────────────── */
+        .cal-card {
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .cal-controls {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--gold-pale);
+        }
+        .cal-select {
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 8px 14px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--surface);
+            cursor: pointer;
+            outline: none;
+        }
+        .cal-select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,151,58,0.15); }
+
+        .cal-dow-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: var(--burgundy);
+        }
+        .cal-dow-cell {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.85);
+        }
+        .cal-dow-cell.weekend { color: var(--gold-light); }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .cal-day {
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            min-height: 90px;
+            padding: 10px;
+            position: relative;
+        }
+        .cal-day:nth-child(7n) { border-right: none; }
+        .cal-day.empty-day { background: var(--surface-alt); }
+        .cal-day.weekend-day { background: #fdfaf4; }
+        .cal-date-num {
+            width: 26px; height: 26px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .cal-day.holiday-co-day .cal-date-num {
+            background: var(--burgundy); color: #fff;
+        }
+        .cal-shift-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* ─── MODAL ──────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-box {
+            background: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            animation: modalIn 0.2s ease;
+        }
+        @keyframes modalIn {
+            from { transform: scale(0.92) translateY(10px); opacity: 0; }
+            to   { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy-light));
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+        .modal-title { font-size: 16px; font-weight: 700; }
+        .modal-subtitle { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 3px; }
+        .modal-close {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            border-radius: 8px;
+            width: 32px; height: 32px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.25); }
+        .modal-body { padding: 16px 20px 8px; }
+        .modal-opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            border-radius: 11px;
+            border: 2px solid transparent;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: var(--surface-alt);
+        }
+        .modal-opt:hover { transform: translateX(4px); }
+        .modal-opt-dot { width: 12px; height: 12px; border-radius: 4px; flex-shrink: 0; }
+        .modal-opt-label { font-size: 13px; font-weight: 600; }
+        .modal-opt-desc { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+        .modal-footer {
+            padding: 12px 20px 16px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .btn-cancel {
+            padding: 8px 18px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .btn-cancel:hover { background: var(--surface-alt); }
+
+        /* ─── PRINT ──────────────────────────────────────── */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: #fff; }
+            header { background: var(--burgundy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .roster-card { box-shadow: none; border: 1px solid #ccc; }
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .stats-strip { grid-template-columns: repeat(2, 1fr); }
+            .summary-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .stats-strip { grid-template-columns: 1fr; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .header-inner { padding: 18px 16px; }
+            main { padding: 16px 12px 40px; }
+        }
+    
+        /* ─── CALENDAR MOBILE FIX ───────────────────────── */
+        .cal-grid { width: 100%; }
+        .cal-day {
+            min-width: 0;
+            overflow: hidden;
+        }
+        .cal-shift-badge {
+            max-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        @media (max-width: 600px) {
+            .cal-controls {
+                padding: 14px 16px;
+            }
+            .cal-select {
+                width: 100%;
+                min-width: 0;
+            }
+            .cal-day {
+                min-height: 72px;
+                padding: 6px;
+            }
+            .cal-date-num {
+                width: 22px;
+                height: 22px;
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+            .cal-shift-badge {
+                font-size: 9px;
+                padding: 2px 4px;
+                border-radius: 5px;
+            }
+            #view-calendar .cal-card > div[style*="padding:16px 24px 24px"] {
+                padding: 12px !important;
+            }
+            #cal-emp-name {
+                font-size: 16px !important;
+            }
+        }
+
+    
+        /* ─── THEMES ───────────────────────────────────── */
+        body.theme-classic {
+            --burgundy: #800020;
+            --burgundy-dark: #5a0016;
+            --burgundy-light: #a8002a;
+            --gold: #c9973a;
+            --gold-light: #f0d080;
+            --gold-pale: #fdf6e3;
+            --surface: #ffffff;
+            --surface-alt: #fafaf8;
+            --border: #e8e2d5;
+            --text-primary: #1e1a16;
+            --text-secondary: #5c5449;
+            --text-muted: #9c9287;
+        }
+        body.theme-yellow {
+            --burgundy: #b45309;
+            --burgundy-dark: #92400e;
+            --burgundy-light: #d97706;
+            --gold: #f59e0b;
+            --gold-light: #fde68a;
+            --gold-pale: #fffbeb;
+            --surface: #ffffff;
+            --surface-alt: #fffdf7;
+            --border: #fde68a;
+            --text-primary: #78350f;
+            --text-secondary: #92400e;
+            --text-muted: #b45309;
+        }
+        body.theme-pink {
+            --burgundy: #db2777;
+            --burgundy-dark: #9d174d;
+            --burgundy-light: #ec4899;
+            --gold: #f472b6;
+            --gold-light: #fbcfe8;
+            --gold-pale: #fdf2f8;
+            --surface: #ffffff;
+            --surface-alt: #fff7fb;
+            --border: #fbcfe8;
+            --text-primary: #831843;
+            --text-secondary: #9d174d;
+            --text-muted: #be185d;
+        }
+        body.theme-dark {
+            --burgundy: #111827;
+            --burgundy-dark: #030712;
+            --burgundy-light: #374151;
+            --gold: #6b7280;
+            --gold-light: #9ca3af;
+            --gold-pale: #1f2937;
+            --surface: #111827;
+            --surface-alt: #1f2937;
+            --border: #374151;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            background: #030712;
+            color: #f9fafb;
+        }
+
+
+        body.theme-dark .thead-date .col-name {
+            color: #ffffff !important;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+
+        /* ─── DARK MODE BUTTON TEXT FIX ───────────────── */
+        body.theme-dark .btn-print,
+        body.theme-dark .btn-header.btn-print {
+            background: #f9fafb !important;
+            color: #111827 !important;
+            border: 1px solid #d1d5db !important;
+        }
+
+        body.theme-dark .btn-reset,
+        body.theme-dark .btn-header.btn-reset {
+            background: #374151 !important;
+            color: #f9fafb !important;
+            border: 1px solid #6b7280 !important;
+        }
+
+        body.theme-dark .cal-select,
+        body.theme-dark input.cal-select {
+            background: #1f2937 !important;
+            color: #f9fafb !important;
+            border: 1px solid #4b5563 !important;
+        }
+
+        body.theme-dark .cal-select option {
+            background: #111827;
+            color: #f9fafb;
+        }
+
+        body.theme-dark label,
+        body.theme-dark #special-holidays-preview {
+            color: #f9fafb !important;
+        }
+
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body class="theme-classic">
+
+<!-- ─── HEADER ───────────────────────────────────── -->
+<header>
+    <div class="header-inner">
+        <div class="header-brand">
+            <div class="header-icon">📅</div>
+            <div class="header-title">
+                <h1>ตารางปฏิบัติงานและวันหยุด</h1>
+                <p>ประจำเดือนมิถุนายน พ.ศ. 2569 (June 2026)</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn-header btn-print" onclick="saveAsImage()">📸 บันทึกรูปภาพ</button>
+            <button class="btn-header btn-reset" onclick="openEditNamesModal()">✏️ แก้ไขชื่อพนักงาน</button>
+            <button class="btn-header btn-reset" onclick="resetToDefault()">↺ รีเซ็ตข้อมูล</button>
+        </div>
+    </div>
+</header>
+
+<!-- ─── MAIN ─────────────────────────────────────── -->
+<main>
+
+
+    <!-- Month / Year Selector -->
+    <div class="roster-card no-print" style="margin-bottom:20px;">
+        <div class="roster-card-header">
+            <div class="roster-card-title">📅 เลือกเดือนและปี</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                <select id="month-select" class="cal-select"></select>
+                <select id="year-select" class="cal-select"></select>
+            </div>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <label style="font-size:13px;font-weight:600;color:var(--text-secondary)">หยุดพิเศษ (ใส่วันที่คั่นด้วย ,)</label>
+            <input id="special-holidays-input" type="text" class="cal-select"
+                   style="min-width:260px;flex:1"
+                   placeholder="เช่น 3, 12, 28">
+            <button class="btn-header btn-print" style="padding:8px 16px;" onclick="saveSpecialHolidays()">💾 บันทึก</button>
+        </div>
+        <div style="padding:0 24px 16px;font-size:11px;color:var(--text-muted);">
+            ระบบจะกำหนดวันหยุดพิเศษให้กับพนักงานทุกคนในวันที่ที่ระบุ
+            <div id="special-holidays-preview" style="margin-top:4px;font-weight:600;color:var(--burgundy);"></div>
+        </div>
+        <div>
+        </div>
+    </div>
+
+
+    <!-- Theme Selector -->
+    <div class="roster-card no-print" style="margin-bottom:20px;">
+        <div class="roster-card-header">
+            <div class="roster-card-title">🎨 เลือกธีมสี</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <select id="theme-select" class="cal-select" onchange="changeTheme()">
+                    <option value="theme-classic">Burgundy Gold</option>
+                    <option value="theme-yellow">Golden Yellow</option>
+                    <option value="theme-pink">Pink Rose</option>
+                    <option value="theme-dark">Dark Mode</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Strip -->
+
+
+    <div class="stats-strip no-print">
+        <div class="stat-card">
+            <div class="stat-icon green">👥</div>
+            <div><div class="stat-label">พนักงานทั้งหมด</div><div class="stat-value" id="stat-total">4 คน</div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon blue">💼</div>
+            <div><div class="stat-label">กะทำงานรวม</div><div class="stat-value" id="stat-shifts">0 กะ</div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon amber">☕</div>
+            <div><div class="stat-label">วันหยุดรวม</div><div class="stat-value" id="stat-offs">0 วัน</div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon rose">🏥</div>
+            <div><div class="stat-label">วันลาสะสม</div><div class="stat-value" id="stat-leaves">0 วัน</div></div>
+        </div>
+    </div>
+
+    <!-- View Switcher -->
+    <div class="view-switcher no-print">
+        <button class="view-btn active" id="btn-table" onclick="switchView('table')">📋 มุมมองตารางรวม</button>
+        <button class="view-btn" id="btn-calendar" onclick="switchView('calendar')">📆 มุมมองปฏิทินรายบุคคล</button>
+    </div>
+
+    <!-- VIEW 1: ROSTER TABLE -->
+    <div id="view-table">
+        <div class="roster-card">
+            <div class="roster-card-header">
+                <div>
+                    <div class="roster-card-title">ตารางปฏิบัติงานประจำเดือนมิถุนายน 2569</div>
+                    <div class="roster-hint">คลิกที่ช่องในตารางเพื่อปรับเปลี่ยนสถานะการทำงาน</div>
+                </div>
+                <div class="legend-row">
+                    <span class="legend-badge" style="background:#f0faf5;color:#166534;border-color:#86efac">กะ 1</span>
+                    <span class="legend-badge" style="background:#eef2ff;color:#3730a3;border-color:#818cf8">กะ 2</span>
+                    <span class="legend-badge" style="background:#f0fdf4;color:#14532d;border-color:#22c55e">ทำงาน</span>
+                    <span class="legend-badge" style="background:#fef9ec;color:#92400e;border-color:#fbbf24">วันหยุด</span>
+                    <span class="legend-badge" style="background:#eff6ff;color:#1e40af;border-color:#60a5fa">ลาป่วย</span>
+                    <span class="legend-badge" style="background:#f5f3ff;color:#5b21b6;border-color:#a78bfa">ลากิจพิเศษ</span>
+                    <span class="legend-badge" style="background:#ecfdf5;color:#065f46;border-color:#34d399">ลาพักร้อน</span>
+                    <span class="legend-badge" style="background:#800020;color:#fff">วันหยุดพิเศษ</span>
+                </div>
+            </div>
+            <div class="table-scroll">
+                <table id="roster-table">
+                    <thead id="roster-thead"></thead>
+                    <tbody id="roster-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Employee Summary Cards -->
+        <div class="summary-section no-print">
+            <div class="summary-heading">📊 สถิติสรุปรายบุคคล (มิถุนายน 2569)</div>
+            <div class="summary-grid" id="emp-summary-grid"></div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: CALENDAR VIEW -->
+    <div id="view-calendar" style="display:none">
+        <div class="cal-card">
+            <div class="cal-controls no-print">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <label style="font-size:13px;font-weight:600;color:var(--text-secondary)">เลือกพนักงาน:</label>
+                    <select class="cal-select" id="cal-select" onchange="renderCalendar()"></select>
+                </div>
+                <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;font-weight:600">
+                    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#16a34a;display:inline-block"></span>ทำงาน</span>
+                    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#d97706;display:inline-block"></span>วันหยุด</span>
+                    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#800020;display:inline-block"></span>หยุดพิเศษ</span>
+                    <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:3px;background:#2563eb;display:inline-block"></span>วันลา</span>
+                </div>
+            </div>
+            <div id="cal-name-header" style="padding:20px 24px 0;text-align:center">
+                <div id="cal-emp-name" style="font-size:18px;font-weight:800;color:var(--text-primary)"></div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:3px">มิถุนายน พ.ศ. 2569</div>
+            </div>
+            <div style="padding:16px 24px 24px">
+                <div class="cal-dow-header">
+                    <div class="cal-dow-cell weekend">อา</div>
+                    <div class="cal-dow-cell">จ</div>
+                    <div class="cal-dow-cell">อ</div>
+                    <div class="cal-dow-cell">พ</div>
+                    <div class="cal-dow-cell">พฤ</div>
+                    <div class="cal-dow-cell">ศ</div>
+                    <div class="cal-dow-cell weekend">ส</div>
+                </div>
+                <div id="cal-grid" class="cal-grid" style="border-left:1px solid var(--border);border-top:1px solid var(--border)"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Notes Section -->
+    <div class="roster-card" style="margin-top:24px;">
+        <div class="roster-card-header">
+            <div>
+                <div class="roster-card-title">📝 หมายเหตุประจำเดือน</div>
+                <div class="roster-hint">ข้อความที่บันทึกไว้จะแสดงในหน้าจอและถูกรวมอยู่ในรูปภาพที่บันทึกออกด้วย</div>
+            </div>
+        </div>
+        <div style="padding:20px 24px;">
+            <textarea
+                id="monthly-notes"
+                class="cal-select"
+                style="width:100%; min-height:120px; resize:vertical; font-family:'Sarabun', sans-serif; line-height:1.6;"
+                placeholder="พิมพ์หมายเหตุเพิ่มเติม เช่น วันประชุม, กิจกรรมพิเศษ หรือข้อมูลสำคัญของเดือนนี้..."
+            ></textarea>
+            <div style="margin-top:12px; display:flex; justify-content:flex-end;">
+                <button class="btn-header btn-print no-print" type="button" onclick="saveNotes()">
+                    💾 บันทึกหมายเหตุ
+                </button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<!-- ─── EDIT NAMES MODAL ───────────────────────── -->
+<div id="edit-names-overlay" class="modal-overlay" style="display:none" onclick="handleEditNamesOverlay(event)">
+    <div class="modal-box" style="max-width:520px;">
+        <div class="modal-header">
+            <div>
+                <div class="modal-title">แก้ไขชื่อพนักงาน</div>
+                <div class="modal-subtitle">เปลี่ยนชื่อและชื่อเล่นได้ตามต้องการ</div>
+            </div>
+            <button class="modal-close" onclick="closeEditNamesModal()">✕</button>
+        </div>
+        <div class="modal-body" id="edit-names-body"></div>
+        <div class="modal-footer" style="gap:10px;">
+            <button class="btn-cancel" onclick="closeEditNamesModal()">ยกเลิก</button>
+            <button class="btn-header btn-print" style="padding:8px 18px;" onclick="saveEmployeeNames()">💾 บันทึก</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── MODAL ─────────────────────────────────────── -->
+<div id="modal-overlay" class="modal-overlay" style="display:none" onclick="handleOverlayClick(event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div>
+                <div class="modal-title" id="modal-emp-name">ปรับเปลี่ยนสถานะ</div>
+                <div class="modal-subtitle" id="modal-date-info">วันที่</div>
+            </div>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer">
+            <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── SCRIPT ────────────────────────────────────── -->
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+let selectedMonth = 6; // June
+let selectedYearBE = 2569;
+let TOTAL_DAYS = 30;
+let START_DOW  = 1; // Monday = 1 (0=Sun)
+
+
+
+function updateCalendarMeta() {
+    const yearAD = selectedYearBE - 543;
+    TOTAL_DAYS = new Date(yearAD, selectedMonth, 0).getDate();
+    const jsDay = new Date(yearAD, selectedMonth - 1, 1).getDay(); // 0=Sun
+    START_DOW = jsDay;
+}
+
+const initialEmployees = [
+    {
+        id: 'emp1',
+        name: 'นันทรา (หลิว)',
+        colorHex: '#ef4444',
+        shifts: {}
+    },
+    {
+        id: 'emp2',
+        name: 'ชัชวัลย์ (ดีโอ)',
+        colorHex: '#3b82f6',
+        shifts: {}
+    },
+    {
+        id: 'emp3',
+        name: 'ปาณิสรา (แหม่ม)',
+        colorHex: '#10b981',
+        shifts: {}
+    },
+    {
+        id: 'emp4',
+        name: 'ธรรศ (ธรรศ)',
+        colorHex: '#f59e0b',
+        shifts: {}
+    }
+];
+
+const statusConfig = {
+    'empty':         { label:'—',           dotBg:'#d1d5db', desc:'ยังไม่กำหนด',           style:'background:transparent;color:#9ca3af;border-color:transparent' },
+    'work':          { label:'ทำงาน',       dotBg:'#22c55e', desc:'วันทำงานปกติ',          style:'background:#f0fdf4;color:#15803d;border-color:#22c55e' },
+    'shift_morning': { label:'กะ 1',      dotBg:'#4ade80', desc:'กะ 1 (เวลาปกติ)',     style:'background:#f0faf5;color:#166534;border-color:#86efac' },
+    'shift_evening': { label:'กะ 2',      dotBg:'#818cf8', desc:'กะ 2 / บ่าย',         style:'background:#eef2ff;color:#3730a3;border-color:#818cf8' },
+    'off':           { label:'หยุด',        dotBg:'#fbbf24', desc:'วันหยุดประจำ',           style:'background:#fef9ec;color:#92400e;border-color:#fbbf24' },
+    'leave_sick':    { label:'ลาป่วย',      dotBg:'#60a5fa', desc:'ลาป่วย',                style:'background:#eff6ff;color:#1e40af;border-color:#60a5fa' },
+    'leave_personal':{ label:'ลากิจ',       dotBg:'#fdba74', desc:'ลากิจทั่วไป',           style:'background:#fff7ed;color:#9a3412;border-color:#fdba74' },
+    'leave_special': { label:'ลาพิเศษ',     dotBg:'#a78bfa', desc:'ลากิจพิเศษ',            style:'background:#f5f3ff;color:#5b21b6;border-color:#a78bfa' },
+    'leave_vacation':{ label:'พักร้อน',    dotBg:'#34d399', desc:'ลาพักร้อน',            style:'background:#ecfdf5;color:#065f46;border-color:#34d399' },
+    'holiday_co':    { label:'หยุดพิเศษ',    dotBg:'#ffffff', desc:'วันหยุดพิเศษ',    style:'background:#800020;color:#fff;border-color:#800020' },
+};
+
+const thaiDayShort = ['อา','จ','อ','พ','พฤ','ศ','ส'];
+const thaiDayFull  = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let employees;
+let activeModal = null; // { empId, date }
+
+
+function getEmployeeNamesKey() {
+    return 'roster_global_employee_names';
+}
+
+function applyGlobalEmployeeNames() {
+    try {
+        const savedNames = JSON.parse(localStorage.getItem(getEmployeeNamesKey()) || '{}');
+        employees.forEach(emp => {
+            if (savedNames[emp.id]) {
+                emp.name = savedNames[emp.id];
+            }
+        });
+    } catch (e) {
+        console.error('Failed to load employee names', e);
+    }
+}
+
+function saveGlobalEmployeeNames() {
+    const savedNames = {};
+    employees.forEach(emp => {
+        savedNames[emp.id] = emp.name;
+    });
+    localStorage.setItem(getEmployeeNamesKey(), JSON.stringify(savedNames));
+}
+
+function getStorageKey() {
+    return `roster_${selectedYearBE}_${selectedMonth}`;
+}
+
+
+function getSpecialHolidayKey() {
+    return `special_holidays_${selectedYearBE}_${selectedMonth}`;
+}
+
+function loadSpecialHolidays() {
+    try {
+        return JSON.parse(localStorage.getItem(getSpecialHolidayKey()) || '[]');
+    } catch {
+        return [];
+    }
+}
+
+function saveSpecialHolidays() {
+    const input = document.getElementById('special-holidays-input');
+    if (!input) return;
+
+    const values = input.value
+        .split(',')
+        .map(v => parseInt(v.trim()))
+        .filter(v => !isNaN(v) && v >= 1 && v <= TOTAL_DAYS);
+
+    const unique = [...new Set(values)].sort((a, b) => a - b);
+    localStorage.setItem(getSpecialHolidayKey(), JSON.stringify(unique));
+
+    // เพิ่มวันหยุดพิเศษเข้าไปในตารางงาน โดยไม่ลบข้อมูลเดิม
+    employees.forEach(emp => {
+        unique.forEach(day => {
+            emp.shifts[day] = 'holiday_co';
+        });
+    });
+
+    saveGlobalEmployeeNames(); 
+    saveData();
+    renderAll();
+}
+
+function loadMonthYearControls() {
+    const monthSel = document.getElementById('month-select');
+    const yearSel = document.getElementById('year-select');
+    if (!monthSel || !yearSel) return;
+
+    monthSel.innerHTML = '';
+    for (let m = 1; m <= 12; m++) {
+        monthSel.innerHTML += `<option value="${m}" ${m===selectedMonth?'selected':''}>${thaiMonths[m]}</option>`;
+    }
+
+    yearSel.innerHTML = '';
+    for (let y = 2568; y <= 2575; y++) {
+        yearSel.innerHTML += `<option value="${y}" ${y===selectedYearBE?'selected':''}>${y}</option>`;
+    }
+
+    monthSel.onchange = yearSel.onchange = () => {
+        selectedMonth = parseInt(monthSel.value);
+        selectedYearBE = parseInt(yearSel.value);
+        updateCalendarMeta();
+        loadData();
+        renderAll();
+    };
+
+    const specialDays = loadSpecialHolidays();
+    const input = document.getElementById('special-holidays-input');
+    const preview = document.getElementById('special-holidays-preview');
+    if (input) input.value = specialDays.join(', ');
+    if (preview) {
+        preview.textContent = specialDays.length
+            ? 'วันที่หยุดพิเศษ: ' + specialDays.join(', ')
+            : 'ยังไม่ได้กำหนดวันหยุดพิเศษ';
+    }
+}
+
+function updateTitles() {
+    const monthName = thaiMonths[selectedMonth];
+    document.title = `ตารางปฏิบัติงาน ${monthName} ${selectedYearBE}`;
+    document.querySelector('.header-title p').textContent = `ประจำเดือน${monthName} พ.ศ. ${selectedYearBE} (${monthName})`;
+    const mainTitle = document.querySelector('.roster-card-title');
+    if (mainTitle) mainTitle.textContent = `ตารางปฏิบัติงานประจำเดือน${monthName} ${selectedYearBE}`;
+    const summaryHeading = document.querySelector('.summary-heading');
+    if (summaryHeading) summaryHeading.textContent = `📊 สถิติสรุปรายบุคคล (${monthName} ${selectedYearBE})`;
+    const calSub = document.querySelector('#cal-name-header div:nth-child(2)');
+    if (calSub) calSub.textContent = `${monthName} พ.ศ. ${selectedYearBE}`;
+}
+
+
+function cleanupOldMonthlyScheduleData() {
+    const cleanupFlag = 'roster_monthly_cleanup_v1_done';
+    if (localStorage.getItem(cleanupFlag)) return;
+
+    const preserveKeys = new Set([
+        'roster_global_employee_names',
+        'roster_theme',
+        cleanupFlag
+    ]);
+
+    // ลบข้อมูลตารางงานรายเดือนเก่าทั้งหมด
+    // เพื่อให้ทุกเดือนเริ่มต้นว่างและไม่มีกะงาน/วันหยุดติดมาจากเวอร์ชันก่อน
+    const keysToDelete = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+
+        if (key.startsWith('roster_') && !preserveKeys.has(key)) {
+            keysToDelete.push(key);
+        }
+    }
+
+    keysToDelete.forEach(key => localStorage.removeItem(key));
+    localStorage.setItem(cleanupFlag, '1');
+}
+
+
+function loadData() {
+    // เริ่มต้นจากข้อมูลตั้งต้น
+    employees = deepCopy(initialEmployees);
+
+    // ล้างข้อมูลกะงานและวันหยุดทั้งหมด
+    // เพื่อให้เดือนใหม่เริ่มต้นว่างเสมอ
+    employees.forEach(emp => {
+        emp.shifts = {};
+    });
+
+    // โหลดชื่อพนักงานแบบ Global (ใช้ร่วมกันทุกเดือน)
+    applyGlobalEmployeeNames();
+
+    // โหลดเฉพาะข้อมูลของเดือนและปีที่เลือกเท่านั้น
+    // ถ้าไม่เคยมีการบันทึกเดือนนี้ ตารางจะว่างทั้งหมด
+    try {
+        const saved = localStorage.getItem(getStorageKey());
+
+        if (saved) {
+            const monthlyEmployees = JSON.parse(saved);
+
+            monthlyEmployees.forEach(monthEmp => {
+                const emp = employees.find(e => e.id === monthEmp.id);
+                if (!emp) return;
+
+                // โหลดเฉพาะข้อมูลของเดือนนี้
+                // ไม่ดึงข้อมูลจากเดือนก่อนหรือเดือนอื่นใด
+                emp.shifts = monthEmp.shifts ? JSON.parse(JSON.stringify(monthEmp.shifts)) : {};
+
+                // คงสีประจำตัวไว้ (ถ้ามี)
+                if (monthEmp.colorHex) {
+                    emp.colorHex = monthEmp.colorHex;
+                }
+            });
+        }
+    } catch (e) {
+        console.error('Failed to load monthly data', e);
+    }
+}
+function saveData() {
+    localStorage.setItem(getStorageKey(), JSON.stringify(employees));
+}
+function deepCopy(x) { return JSON.parse(JSON.stringify(x)); }
+function resetToDefault() {
+    if (!confirm('รีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้น?')) return;
+    employees = deepCopy(initialEmployees);
+    saveData(); renderAll();
+}
+
+// ═══════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════
+function getDOW(date) { return (START_DOW + date - 1) % 7; } // 0=Sun
+function isWeekend(date) { const d = getDOW(date); return d === 0 || d === 6; }
+function getShift(emp, date) { return emp.shifts[date] || 'empty'; }
+
+function getShiftBtnClass(status) {
+    const map = {
+        empty:'sb-empty', work:'sb-work', shift_morning:'sb-shift_morning',
+        shift_evening:'sb-shift_evening', off:'sb-off', leave_sick:'sb-leave_sick',
+        leave_personal:'sb-leave_personal', leave_special:'sb-leave_special', leave_vacation:'sb-leave_vacation',
+        holiday_co:'sb-holiday_co'
+    };
+    return map[status] || 'sb-empty';
+}
+
+function getShiftLabel(status) {
+    const labels = {
+        empty:'', work:'ทำ', shift_morning:'กะ1', shift_evening:'กะ2',
+        off:'หยุด', leave_sick:'ลาป', leave_personal:'ลากจ',
+        leave_special:'ลาพ', leave_vacation:'พักร', holiday_co:'พิเศษ'
+    };
+    return labels[status] !== undefined ? labels[status] : '';
+}
+
+function countStats(emp) {
+    let work=0, off=0, special=0, leave=0;
+    for (let d=1; d<=TOTAL_DAYS; d++) {
+        const s = getShift(emp, d);
+        if (s==='empty') continue;
+        if (s==='work'||s==='shift_morning'||s==='shift_evening') work++;
+        else if (s==='off') off++;
+        else if (s==='holiday_co') special++;
+        else if (s.startsWith('leave')) leave++;
+    }
+    return {work, off, special, leave};
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER ROSTER TABLE
+// ═══════════════════════════════════════════════
+function renderRosterHeader() {
+    const thead = document.getElementById('roster-thead');
+
+    // Row 1: Day of Week
+    let r1 = `<tr class="thead-dow">
+        <th class="col-name emp-cell">ชื่อพนักงาน / วัน</th>`;
+    for (let d=1; d<=TOTAL_DAYS; d++) {
+        const dow = getDOW(d);
+        const we = (dow===0||dow===6);
+        r1 += `<th class="col-day${we?' weekend':''}">${thaiDayShort[dow]}</th>`;
+    }
+    r1 += `<th class="col-summary">ทำงาน</th>
+             <th class="col-summary">หยุด</th>
+             <th class="col-summary">พิเศษ</th>
+             <th class="col-summary">ลา</th></tr>`;
+
+    // Row 2: Dates
+    let r2 = `<tr class="thead-date">
+        <th class="col-name emp-cell">${thaiMonths[selectedMonth]} ${selectedYearBE}</th>`;
+    for (let d=1; d<=TOTAL_DAYS; d++) {
+        const dow = getDOW(d);
+        const we = (dow===0||dow===6);
+        // Mark company holiday col
+        let cls = 'col-day';
+        if (we) cls += ' weekend';
+        r2 += `<th class="${cls}">${d}</th>`;
+    }
+    r2 += `<th class="col-summary" style="font-size:10px"></th>
+            <th class="col-summary" style="font-size:10px"></th>
+            <th class="col-summary" style="font-size:10px"></th>
+            <th class="col-summary" style="font-size:10px"></th></tr>`;
+
+    thead.innerHTML = r1 + r2;
+}
+
+function renderRosterBody() {
+    const tbody = document.getElementById('roster-tbody');
+    tbody.innerHTML = '';
+
+    employees.forEach(emp => {
+        const stats = countStats(emp);
+        let row = `<tr>
+            <td class="col-name emp-cell">
+                <div class="emp-name-inner">
+                    <div class="emp-dot" style="background:${emp.colorHex}"></div>
+                    <div class="emp-name-text">${emp.name}</div>
+                </div>
+            </td>`;
+
+        for (let d=1; d<=TOTAL_DAYS; d++) {
+            const status = getShift(emp, d);
+            const we = isWeekend(d);
+            const label = getShiftLabel(status);
+            const btnClass = getShiftBtnClass(status);
+            row += `<td class="shift-cell${we?' weekend':''}">
+                <button class="shift-btn ${btnClass}"
+                    onclick="openModal('${emp.id}',${d})"
+                    title="${statusConfig[status]?.desc || ''}"
+                >${label}</button>
+            </td>`;
+        }
+
+        row += `<td class="sum-cell"><span class="sum-badge sum-work">${stats.work}</span></td>
+                <td class="sum-cell"><span class="sum-badge sum-off">${stats.off}</span></td>
+                <td class="sum-cell"><span class="sum-badge" style="background:#fdf2f8;color:#9d174d">${stats.special}</span></td>
+                <td class="sum-cell"><span class="sum-badge sum-leave">${stats.leave}</span></td>
+                </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER STATS
+// ═══════════════════════════════════════════════
+function renderStats() {
+    let totalWork=0, totalOff=0, totalLeave=0;
+    employees.forEach(emp => {
+        const s = countStats(emp);
+        totalWork += s.work; totalOff += s.off; totalLeave += s.leave;
+    });
+    document.getElementById('stat-total').textContent  = employees.length + ' คน';
+    document.getElementById('stat-shifts').textContent = totalWork + ' กะ';
+    document.getElementById('stat-offs').textContent   = totalOff + ' วัน';
+    document.getElementById('stat-leaves').textContent = totalLeave + ' วัน';
+}
+
+// ═══════════════════════════════════════════════
+//  EMPLOYEE SUMMARY CARDS
+// ═══════════════════════════════════════════════
+function renderSummaryCards() {
+    const grid = document.getElementById('emp-summary-grid');
+    grid.innerHTML = '';
+    employees.forEach(emp => {
+        const s = countStats(emp);
+        const initials = emp.name.charAt(0);
+        grid.innerHTML += `
+        <div class="emp-summary-card">
+            <div class="emp-summary-top">
+                <div class="emp-avatar" style="background:${emp.colorHex}">${initials}</div>
+                <div>
+                    <div class="emp-summary-name">${emp.name}</div>
+                    <div class="emp-summary-role">มิถุนายน 2569</div>
+                </div>
+            </div>
+            <div class="emp-stats-grid">
+                <div class="emp-stat-item">
+                    <div class="emp-stat-num color-green">${s.work}</div>
+                    <div class="emp-stat-lbl">กะทำงาน</div>
+                </div>
+                <div class="emp-stat-item">
+                    <div class="emp-stat-num color-amber">${s.off}</div>
+                    <div class="emp-stat-lbl">วันหยุด</div>
+                </div>
+                <div class="emp-stat-item">
+                    <div class="emp-stat-num" style="color:#be185d">${s.special}</div>
+                    <div class="emp-stat-lbl">หยุดพิเศษ</div>
+                </div>
+            </div>
+        </div>`;
+    });
+}
+
+// ═══════════════════════════════════════════════
+//  CALENDAR VIEW
+// ═══════════════════════════════════════════════
+function populateCalSelect() {
+    const sel = document.getElementById('cal-select');
+    sel.innerHTML = '';
+    employees.forEach(emp => {
+        sel.innerHTML += `<option value="${emp.id}">${emp.name}</option>`;
+    });
+}
+
+function renderCalendar() {
+    const sel = document.getElementById('cal-select');
+    const empId = sel.value;
+    const emp = employees.find(e => e.id === empId);
+    if (!emp) return;
+
+    document.getElementById('cal-emp-name').textContent = emp.name;
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    // Blank cells before day 1 (Mon = START_DOW=1, so 1 blank for Sunday)
+    for (let i=0; i<START_DOW; i++) {
+        grid.innerHTML += `<div class="cal-day empty-day"></div>`;
+    }
+
+    for (let d=1; d<=TOTAL_DAYS; d++) {
+        const status = getShift(emp, d);
+        const we = isWeekend(d);
+        const cfg = statusConfig[status] || statusConfig.empty;
+
+        let dayClass = 'cal-day';
+        if (we) dayClass += ' weekend-day';
+        if (status === 'holiday_co') dayClass += ' holiday-co-day';
+
+        let badgeHtml = '';
+        if (status !== 'empty') {
+            badgeHtml = `<span class="cal-shift-badge" style="${cfg.style}">${cfg.label}</span>`;
+        }
+
+        grid.innerHTML += `
+        <div class="${dayClass}" onclick="openModal('${emp.id}',${d})">
+            <div class="cal-date-num" style="${status==='holiday_co'?'background:#800020;color:#fff':''}">${d}</div>
+            <div style="font-size:10px;color:#9c9287;margin-bottom:5px">${thaiDayFull[getDOW(d)]}</div>
+            ${badgeHtml}
+        </div>`;
+    }
+
+    // Fill remaining blanks to complete grid row
+    const totalCells = START_DOW + TOTAL_DAYS;
+    const remainder = totalCells % 7;
+    if (remainder !== 0) {
+        for (let i=0; i<7-remainder; i++) {
+            grid.innerHTML += `<div class="cal-day empty-day"></div>`;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════
+//  VIEW SWITCHER
+// ═══════════════════════════════════════════════
+function switchView(view) {
+    const isTable = view === 'table';
+    document.getElementById('view-table').style.display = isTable ? '' : 'none';
+    document.getElementById('view-calendar').style.display = isTable ? 'none' : '';
+    document.getElementById('btn-table').classList.toggle('active', isTable);
+    document.getElementById('btn-calendar').classList.toggle('active', !isTable);
+    if (!isTable) renderCalendar();
+}
+
+// ═══════════════════════════════════════════════
+//  MODAL
+// ═══════════════════════════════════════════════
+const thaiMonths = ['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+
+function openModal(empId, date) {
+    activeModal = { empId, date };
+    const emp = employees.find(e => e.id === empId);
+    const currentStatus = getShift(emp, date);
+    const dow = getDOW(date);
+
+    document.getElementById('modal-emp-name').textContent = emp.name;
+    document.getElementById('modal-date-info').textContent =
+        `วัน${thaiDayFull[dow]} ที่ ${date} ${thaiMonths[selectedMonth]} พ.ศ. 2569`;
+
+    const body = document.getElementById('modal-body');
+    body.innerHTML = '';
+
+    Object.entries(statusConfig).forEach(([key, cfg]) => {
+        const isActive = key === currentStatus;
+        body.innerHTML += `
+        <div class="modal-opt" style="${cfg.style};${isActive?'outline:2px solid currentColor;outline-offset:1px':''}"
+             onclick="applyStatus('${key}')">
+            <div class="modal-opt-dot" style="background:${cfg.dotBg};border:1px solid rgba(0,0,0,0.1)"></div>
+            <div>
+                <div class="modal-opt-label">${cfg.label} ${isActive?'✓':''}</div>
+                <div class="modal-opt-desc">${cfg.desc}</div>
+            </div>
+        </div>`;
+    });
+
+    document.getElementById('modal-overlay').style.display = 'flex';
+}
+
+function applyStatus(status) {
+    if (!activeModal) return;
+    const { empId, date } = activeModal;
+    const emp = employees.find(e => e.id === empId);
+    if (status === 'empty') {
+        delete emp.shifts[date];
+    } else {
+        emp.shifts[date] = status;
+    }
+    saveData();
+    renderAll();
+    closeModal();
+}
+
+function closeModal() {
+    document.getElementById('modal-overlay').style.display = 'none';
+    activeModal = null;
+}
+
+function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+
+// ═══════════════════════════════════════════════
+//  EDIT EMPLOYEE NAMES
+// ═══════════════════════════════════════════════
+function openEditNamesModal() {
+    const body = document.getElementById('edit-names-body');
+    body.innerHTML = '';
+
+    employees.forEach((emp, index) => {
+        body.innerHTML += `
+            <div style="margin-bottom:12px;">
+                <label style="display:block;font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:6px;">
+                    พนักงานคนที่ ${index + 1}
+                </label>
+                <input
+                    type="text"
+                    id="emp-name-${emp.id}"
+                    value="${emp.name}"
+                    class="cal-select"
+                    style="width:100%;"
+                >
+            </div>
+        `;
+    });
+
+    document.getElementById('edit-names-overlay').style.display = 'flex';
+}
+
+function saveEmployeeNames() {
+    employees.forEach(emp => {
+        const input = document.getElementById(`emp-name-${emp.id}`);
+        if (input && input.value.trim()) {
+            emp.name = input.value.trim();
+        }
+    });
+
+    // บันทึกชื่อพนักงานแบบ Global เพื่อใช้กับทุกเดือน/ปี
+    saveGlobalEmployeeNames();
+
+    // บันทึกข้อมูลของเดือนปัจจุบันด้วย เพื่อให้ชื่อใหม่แสดงทันที
+    saveData();
+
+    renderAll();
+    closeEditNamesModal();
+}
+
+function closeEditNamesModal() {
+    document.getElementById('edit-names-overlay').style.display = 'none';
+}
+
+function handleEditNamesOverlay(e) {
+    if (e.target === document.getElementById('edit-names-overlay')) {
+        closeEditNamesModal();
+    }
+}
+
+
+
+// ═══════════════════════════════════════════════
+//  THEME SYSTEM
+// ═══════════════════════════════════════════════
+function changeTheme() {
+    const sel = document.getElementById('theme-select');
+    const theme = sel ? sel.value : 'theme-classic';
+    document.body.className = theme;
+    localStorage.setItem('roster_theme', theme);
+}
+
+function loadTheme() {
+    const theme = localStorage.getItem('roster_theme') || 'theme-classic';
+    document.body.className = theme;
+    const sel = document.getElementById('theme-select');
+    if (sel) sel.value = theme;
+}
+
+
+
+// ═══════════════════════════════════════════════
+//  MONTHLY NOTES
+// ═══════════════════════════════════════════════
+function getNotesKey() {
+    return getStorageKey() + '_notes';
+}
+
+function loadNotes() {
+    const textarea = document.getElementById('monthly-notes');
+    if (!textarea) return;
+    textarea.value = localStorage.getItem(getNotesKey()) || '';
+}
+
+function saveNotes() {
+    const textarea = document.getElementById('monthly-notes');
+    if (!textarea) return;
+    localStorage.setItem(getNotesKey(), textarea.value);
+
+    // แจ้งเตือนสั้น ๆ เมื่อบันทึกสำเร็จ
+    const btn = document.querySelector('button[onclick="saveNotes()"]');
+    if (btn) {
+        const original = btn.innerHTML;
+        btn.innerHTML = '✅ บันทึกแล้ว';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.disabled = false;
+        }, 1500);
+    }
+}
+
+
+// ═══════════════════════════════════════════════
+//  RENDER ALL
+// ═══════════════════════════════════════════════
+function renderAll() {
+    loadTheme();
+    updateTitles();
+    loadMonthYearControls();
+    renderRosterHeader();
+    renderRosterBody();
+    renderStats();
+    renderSummaryCards();
+    populateCalSelect();
+    renderCalendar();
+    loadNotes();
+}
+
+
+// ═══════════════════════════════════════════════
+//  EXPORT IMAGE
+// ═══════════════════════════════════════════════
+async function saveAsImage() {
+    const isTableView = document.getElementById('view-table').style.display !== 'none';
+
+    // สำหรับมุมมองตาราง: สร้าง container ชั่วคราวที่รวมเฉพาะ
+    // 1) ตารางปฏิบัติงาน (roster-card)
+    // 2) หมายเหตุประจำเดือน
+    // โดยไม่รวมสถิติ, ปุ่ม, summary cards หรือส่วนอื่น
+    let target;
+
+    if (isTableView) {
+        const rosterCard = document.querySelector('#view-table .roster-card');
+        const notesCard = document.querySelector('#monthly-notes')?.closest('.roster-card');
+
+        if (!rosterCard) {
+            alert('ไม่พบตารางงาน');
+            return;
+        }
+
+        target = document.createElement('div');
+        target.style.position = 'fixed';
+        target.style.left = '-99999px';
+        target.style.top = '0';
+        target.style.background = '#ffffff';
+        target.style.padding = '0';
+        target.style.margin = '0';
+
+        const rosterClone = rosterCard.cloneNode(true);
+        const notesClone = notesCard ? notesCard.cloneNode(true) : null;
+
+        // ขยายตารางให้เห็นครบทุกคอลัมน์
+        const tableScroll = rosterClone.querySelector('.table-scroll');
+        if (tableScroll) {
+            tableScroll.style.overflowX = 'visible';
+            tableScroll.style.width = 'max-content';
+        }
+
+        target.appendChild(rosterClone);
+
+        if (notesClone) {
+            notesClone.style.marginTop = '24px';
+            target.appendChild(notesClone);
+        }
+
+        document.body.appendChild(target);
+    } else {
+        target = document.querySelector('#view-calendar .cal-card');
+        if (!target) {
+            alert('ไม่พบปฏิทิน');
+            return;
+        }
+    }
+
+    const monthName = thaiMonths[selectedMonth];
+    const filename = isTableView
+        ? `ตารางปฏิบัติงาน_${monthName}_${selectedYearBE}.png`
+        : `ปฏิทินรายบุคคล_${monthName}_${selectedYearBE}.png`;
+
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    try {
+        const width = Math.max(target.scrollWidth, target.offsetWidth);
+        const height = Math.max(target.scrollHeight, target.offsetHeight);
+
+        const canvas = await html2canvas(target, {
+            scale: 3,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            width: width,
+            height: height,
+            windowWidth: width,
+            windowHeight: height,
+            scrollX: 0,
+            scrollY: 0
+        });
+
+        if (isTableView && target.parentNode) {
+            target.parentNode.removeChild(target);
+        }
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+    } catch (err) {
+        if (isTableView && target && target.parentNode) {
+            target.parentNode.removeChild(target);
+        }
+        console.error(err);
+        alert('ไม่สามารถบันทึกรูปภาพได้');
+    }
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+updateCalendarMeta();
+loadData();
+renderAll();
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  onSnapshot,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+// ===== Firebase Config =====
+// ใช้ค่าจากโปรเจกต์ marketing-schedule-realtime ของคุณ
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "marketing-schedule-realtime.firebaseapp.com",
+  projectId: "marketing-schedule-realtime",
+  storageBucket: "marketing-schedule-realtime.firebasestorage.app",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+window.firebaseReady = false;
+
+try {
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const scheduleRef = doc(
+    db,
+    "schedules",
+    `${selectedYearBE}_${selectedMonth}`
+  );
+
+  // ฟังก์ชันช่วยสร้าง document ref ตามเดือน/ปีที่เลือก
+  function getScheduleRef() {
+    return doc(
+      db,
+      "schedules",
+      `${selectedYearBE}_${selectedMonth}`
+    );
+  }
+
+  // Override saveData ให้บันทึกขึ้น Firestore แบบออนไลน์
+  window.saveData = async function () {
+    const notesEl = document.getElementById('monthly-notes');
+    const notes = notesEl ? notesEl.value : '';
+    const specialHolidays = loadSpecialHolidays();
+
+    const payload = {
+      employees: employees,
+      notes: notes,
+      specialHolidays: specialHolidays,
+      updatedAt: new Date().toISOString()
+    };
+
+    try {
+      await setDoc(getScheduleRef(), payload);
+      localStorage.setItem(getStorageKey(), JSON.stringify(employees));
+      localStorage.setItem(getNotesKey(), notes);
+      localStorage.setItem(getSpecialHolidayKey(), JSON.stringify(specialHolidays));
+    } catch (err) {
+      console.error("Firestore save error:", err);
+      localStorage.setItem(getStorageKey(), JSON.stringify(employees));
+      localStorage.setItem(getNotesKey(), notes);
+      localStorage.setItem(getSpecialHolidayKey(), JSON.stringify(specialHolidays));
+    }
+  };
+
+  // Override loadData ให้โหลดทุกข้อมูลจาก Firestore
+  window.loadData = async function () {
+    employees = deepCopy(initialEmployees);
+    employees.forEach(emp => emp.shifts = {});
+    applyGlobalEmployeeNames();
+
+    try {
+      const snap = await getDoc(getScheduleRef());
+      if (snap.exists()) {
+        const data = snap.data();
+
+        if (Array.isArray(data.employees)) {
+          employees = data.employees;
+        }
+
+        if (typeof data.notes === 'string') {
+          localStorage.setItem(getNotesKey(), data.notes);
+        }
+
+        if (Array.isArray(data.specialHolidays)) {
+          localStorage.setItem(
+            getSpecialHolidayKey(),
+            JSON.stringify(data.specialHolidays)
+          );
+        }
+      } else {
+        const saved = localStorage.getItem(getStorageKey());
+        if (saved) {
+          employees = JSON.parse(saved);
+        }
+      }
+    } catch (err) {
+      console.error("Firestore load error:", err);
+      const saved = localStorage.getItem(getStorageKey());
+      if (saved) {
+        try {
+          employees = JSON.parse(saved);
+        } catch (e) {}
+      }
+    }
+
+    applyGlobalEmployeeNames();
+  };
+
+  // Subscribe Real-Time
+  let unsubscribe = null;
+
+  window.startRealtimeSync = function () {
+    if (unsubscribe) unsubscribe();
+
+    unsubscribe = onSnapshot(getScheduleRef(), (snap) => {
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+
+      if (Array.isArray(data.employees)) {
+        employees = data.employees;
+      }
+
+      if (typeof data.notes === 'string') {
+        localStorage.setItem(getNotesKey(), data.notes);
+        const notesEl = document.getElementById('monthly-notes');
+        if (notesEl && notesEl.value !== data.notes) {
+          notesEl.value = data.notes;
+        }
+      }
+
+      if (Array.isArray(data.specialHolidays)) {
+        localStorage.setItem(
+          getSpecialHolidayKey(),
+          JSON.stringify(data.specialHolidays)
+        );
+
+        const input = document.getElementById('special-holidays-input');
+        const preview = document.getElementById('special-holidays-preview');
+        const textValue = data.specialHolidays.join(', ');
+
+        if (input && input.value !== textValue) {
+          input.value = textValue;
+        }
+
+        if (preview) {
+          preview.textContent = data.specialHolidays.length
+            ? 'วันที่หยุดพิเศษ: ' + textValue
+            : 'ยังไม่ได้กำหนดวันหยุดพิเศษ';
+        }
+      }
+
+      applyGlobalEmployeeNames();
+
+      if (typeof loadNotes === 'function') loadNotes();
+      if (typeof loadMonthYearControls === 'function') loadMonthYearControls();
+      if (typeof renderAll === 'function') renderAll();
+    }, (err) => {
+      console.error("Realtime listener error:", err);
+    });
+  };
+
+  // เมื่อเปลี่ยนเดือน/ปี ให้เริ่ม listener ใหม่
+  const originalLoadMonthYearControls = window.loadMonthYearControls;
+  window.loadMonthYearControls = function () {
+    if (typeof originalLoadMonthYearControls === "function") {
+      originalLoadMonthYearControls();
+    }
+
+    const monthSel = document.getElementById('month-select');
+    const yearSel = document.getElementById('year-select');
+
+    if (monthSel && yearSel) {
+      const handler = async () => {
+        selectedMonth = parseInt(monthSel.value);
+        selectedYearBE = parseInt(yearSel.value);
+        updateCalendarMeta();
+        await window.loadData();
+        if (typeof renderAll === "function") renderAll();
+        window.startRealtimeSync();
+      };
+
+      monthSel.onchange = handler;
+      yearSel.onchange = handler;
+    }
+  };
+
+  window.firebaseReady = true;
+
+  // เริ่มทำงานหลังหน้าโหลดเสร็จ
+  window.addEventListener('load', async () => {
+    try {
+      await window.loadData();
+      if (typeof renderAll === "function") renderAll();
+      window.startRealtimeSync();
+      console.log("Firebase Realtime Sync Connected");
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+} catch (err) {
+  console.error("Firebase initialization error:", err);
+  alert("กรุณาใส่ Firebase Config จริง (apiKey, appId, messagingSenderId) ก่อนใช้งาน");
+}
+</script>
+
+
+<script>
+// ทำให้หมายเหตุบันทึกขึ้น Firestore และอัปเดตแบบ Real-Time
+(function() {
+  const originalSaveNotes = window.saveNotes;
+  if (typeof originalSaveNotes === 'function') {
+    window.saveNotes = async function() {
+      originalSaveNotes();
+      if (typeof window.saveData === 'function') {
+        await window.saveData();
+      }
+    };
+  }
+})();
+</script>
+</body>
+</html>
