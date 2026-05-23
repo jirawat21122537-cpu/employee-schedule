@@ -47,6 +47,14 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html{
+    scroll-behavior:smooth;
+}
+
+body,button,div,table,tr,td{
+    will-change:transform;
+}
+
         body {
             font-family: 'Sarabun', sans-serif;
             background: #f5f0e8;
@@ -856,11 +864,265 @@
             color: #f9fafb !important;
         }
 
-    </style>
+    
+/* ===== PREMIUM UI UPGRADE ===== */
+
+body{
+    overflow-x:hidden !important;
+    position:relative;
+    background:
+        linear-gradient(135deg,#fdfcfb 0%,#f5f7fa 45%,#eef2ff 100%) !important;
+    color:#1e1a16;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.premium-overlay{
+    position:fixed;
+    inset:0;
+    backdrop-filter:blur(2px);
+    pointer-events:none;
+    z-index:0;
+}
+
+#weather-effects{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
+
+header,
+main,
+.roster-card,
+.cal-card,
+.stat-card,
+.emp-summary-card{
+    position:relative;
+    z-index:2;
+}
+
+header{
+    backdrop-filter:blur(18px);
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+
+.roster-card,
+.cal-card,
+.stat-card,
+.emp-summary-card,
+.modal-box{
+    background:rgba(255,255,255,.55) !important;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.12) !important;
+    box-shadow:0 10px 40px rgba(0,0,0,.25) !important;
+}
+
+.roster-card:hover,
+.stat-card:hover,
+.emp-summary-card:hover{
+    transform:translateY(-4px) scale(1.01);
+}
+
+button,
+.shift-btn,
+.cal-day,
+.stat-card,
+.roster-card{
+    transition:all .3s ease !important;
+}
+
+.shift-btn:hover{
+    transform:scale(1.15) !important;
+    box-shadow:0 5px 18px rgba(255,255,255,.25);
+}
+
+table tbody tr:hover{
+    background:rgba(255,255,255,.06) !important;
+}
+
+/* ===== WEATHER EFFECTS ===== */
+
+.rain-drop{
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:linear-gradient(transparent, rgba(255,255,255,.8));
+    animation:rainFall linear infinite;
+}
+
+@keyframes rainFall{
+    from{transform:translateY(-120px)}
+    to{transform:translateY(110vh)}
+}
+
+.snowflake{
+    position:absolute;
+    color:white;
+    animation:snowFall linear infinite;
+}
+
+@keyframes snowFall{
+    from{transform:translateY(-10vh)}
+    to{transform:translateY(110vh)}
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:.2}
+    50%{opacity:1}
+}
+
+.sun-glow{
+    position:absolute;
+    top:-180px;
+    right:-180px;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,215,0,.45), transparent);
+    filter:blur(50px);
+}
+
+.cloud{
+    position:absolute;
+    width:220px;
+    height:70px;
+    background:rgba(255,255,255,.12);
+    border-radius:999px;
+    filter:blur(2px);
+    animation:cloudMove linear infinite;
+}
+
+@keyframes cloudMove{
+    from{transform:translateX(-300px)}
+    to{transform:translateX(120vw)}
+}
+
+</style>
 
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+
+// ===== PREMIUM WEATHER SYSTEM =====
+
+const weatherContainer = document.getElementById('weather-effects');
+
+function clearWeather(){
+    weatherContainer.innerHTML = '';
+}
+
+function createRain(){
+    clearWeather();
+
+    for(let i=0;i<140;i++){
+
+        const rain = document.createElement('div');
+        rain.className = 'rain-drop';
+
+        rain.style.left = Math.random()*100 + 'vw';
+        rain.style.animationDuration = (0.4 + Math.random()) + 's';
+        rain.style.opacity = Math.random();
+
+        weatherContainer.appendChild(rain);
+    }
+}
+
+function createSnow(){
+    clearWeather();
+
+    for(let i=0;i<100;i++){
+
+        const snow = document.createElement('div');
+        snow.className = 'snowflake';
+
+        snow.innerHTML = '❄';
+
+        snow.style.left = Math.random()*100 + 'vw';
+        snow.style.fontSize = (10 + Math.random()*18) + 'px';
+        snow.style.animationDuration = (4 + Math.random()*6) + 's';
+
+        weatherContainer.appendChild(snow);
+    }
+}
+
+function createNight(){
+
+    clearWeather();
+
+    for(let i=0;i<150;i++){
+
+        const star = document.createElement('div');
+
+        star.className = 'star';
+
+        star.style.left = Math.random()*100 + 'vw';
+        star.style.top = Math.random()*100 + 'vh';
+        star.style.animationDelay = Math.random()*2 + 's';
+
+        weatherContainer.appendChild(star);
+    }
+}
+
+function createSunny(){
+
+    clearWeather();
+
+    const sun = document.createElement('div');
+
+    sun.className = 'sun-glow';
+
+    weatherContainer.appendChild(sun);
+
+    for(let i=0;i<6;i++){
+
+        const cloud = document.createElement('div');
+
+        cloud.className = 'cloud';
+
+        cloud.style.top = (10 + Math.random()*40) + 'vh';
+        cloud.style.animationDuration = (25 + Math.random()*20) + 's';
+        cloud.style.opacity = 0.3 + Math.random()*0.3;
+
+        weatherContainer.appendChild(cloud);
+    }
+}
+
+// Auto weather
+const hourNow = new Date().getHours();
+
+if(hourNow >= 18 || hourNow <= 5){
+    createNight();
+}else{
+    createSunny();
+}
+
+// Demo changing weather
+setTimeout(createRain, 7000);
+setTimeout(createSnow, 14000);
+
+
+</script>
 </head>
 <body class="theme-classic">
+
+<div id="weather-effects"></div>
+<div class="premium-overlay"></div>
+
 
 <!-- ─── HEADER ───────────────────────────────────── -->
 <header>
@@ -1104,13 +1366,13 @@ function updateCalendarMeta() {
 const initialEmployees = [
     {
         id: 'emp1',
-        name: 'นันทรา (หลิว)',
+        name: 'มินตรา (หมิว)',
         colorHex: '#ef4444',
         shifts: {}
     },
     {
         id: 'emp2',
-        name: 'ชัชวัลย์ (ดีโอ)',
+        name: 'จิรวัฒน์ (ลีโอ)',
         colorHex: '#3b82f6',
         shifts: {}
     },
@@ -1122,7 +1384,7 @@ const initialEmployees = [
     },
     {
         id: 'emp4',
-        name: 'ธรรศ (ธรรศ)',
+        name: 'ธรรมธนาธิป (ธรรม์)',
         colorHex: '#f59e0b',
         shifts: {}
     }
@@ -1143,6 +1405,10 @@ const statusConfig = {
 
 const thaiDayShort = ['อา','จ','อ','พ','พฤ','ศ','ส'];
 const thaiDayFull  = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+
+
+localStorage.removeItem('roster_global_employee_names');
+
 
 // ═══════════════════════════════════════════════
 //  STATE
@@ -2089,5 +2355,63 @@ try {
   }
 })();
 </script>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+<script>
+
+async function initLIFF(){
+
+    try{
+
+        await liff.init({
+            liffId: "2010173632-p7ewHNaS"
+        });
+
+        if(!liff.isLoggedIn()){
+            liff.login();
+            return;
+        }
+
+        const profile = await liff.getProfile();
+
+        console.log(profile);
+
+        window.lineProfile = profile;
+
+        // Toast
+        const toast = document.createElement('div');
+        toast.innerHTML = '✅ เชื่อมต่อ LINE สำเร็จ';
+        toast.style.cssText = `
+            position:fixed;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            background:#111827;
+            color:white;
+            padding:12px 18px;
+            border-radius:14px;
+            z-index:999999;
+            font-weight:700;
+            box-shadow:0 10px 30px rgba(0,0,0,.25);
+        `;
+        document.body.appendChild(toast);
+
+        setTimeout(()=>{
+            toast.remove();
+        },2500);
+
+    }catch(err){
+
+        console.error(err);
+
+    }
+
+}
+
+initLIFF();
+
+</script>
+
 </body>
 </html>
