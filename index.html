@@ -4085,5 +4085,39 @@ card.style.transform=
 <script>
 
 
+
+<script>
+async function sendLineTodayShift() {
+    const token = "PUT_YOUR_CHANNEL_ACCESS_TOKEN_HERE";
+    const userId = "Uaade64c9fe935d1fc6a732970ccda037";
+
+    const today = new Date().getDate();
+
+    const myData = employees.find(emp => emp.name.includes("ลีโอ"));
+    if (!myData) return;
+
+    const todayShift = myData.schedule[today - 1] || "ไม่มีข้อมูล";
+
+    await fetch("https://api.line.me/v2/bot/message/push", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            to: userId,
+            messages: [{
+                type: "text",
+                text: `📅 วันนี้คุณเข้ากะ: ${todayShift}`
+            }]
+        })
+    });
+}
+
+window.addEventListener("load", () => {
+    setTimeout(sendLineTodayShift, 1500);
+});
+</script>
+
 </body>
 </html>
