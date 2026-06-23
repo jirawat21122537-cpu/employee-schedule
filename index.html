@@ -4089,7 +4089,7 @@ async function sendLineTodayShift() {
 
     const today = new Date().getDate();
 
-    const myData = employees.find(emp => emp.name.includes("ลีโอ"));
+    const myData = employees[1];
     if (!myData) return;
 
     const todayShift = myData.schedule[today - 1] || "ไม่มีข้อมูล";
