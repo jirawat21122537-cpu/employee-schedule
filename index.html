@@ -1133,25 +1133,25 @@ body.theme-doraemon .shift-btn{
 .float-2{ bottom:110px; left:18px; }
 .float-3{ top:300px; right:14px; }
 
-/* subtle sparkles */
-.sparkle{
+/* subtle s */
+.{
     position:fixed;
     pointer-events:none;
     z-index:999;
     opacity:.28;
-    animation:sparkleMove 6s ease-in-out infinite;
+    animation:Move 6s ease-in-out infinite;
 }
 
-.sparkle-1{ top:180px; left:22px; font-size:12px; }
-.sparkle-2{ bottom:220px; right:24px; font-size:14px; animation-delay:2s; }
+.-1{ top:180px; left:22px; font-size:12px; }
+.-2{ bottom:220px; right:24px; font-size:14px; animation-delay:2s; }
 
-@keyframes sparkleMove{
+@keyframes Move{
     0%{transform:translateY(0px) scale(1);}
     50%{transform:translateY(-5px) scale(1.1);}
     100%{transform:translateY(0px) scale(1);}
 }
 
-body:not(.theme-kirby):not(.theme-doraemon) .sparkle{
+body:not(.theme-kirby):not(.theme-doraemon) .{
     display:none;
 }
 </style>
@@ -1249,7 +1249,7 @@ body.theme-nature .btn-header{
 
 body.theme-nature .theme-floating,
 body.theme-nature .character-float,
-body.theme-nature .sparkle{
+body.theme-nature .{
     display:none;
 }
 </style>
@@ -1514,6 +1514,489 @@ body.theme-nature .notification-panel *{
 }
 </style>
 
+
+<style>
+.work-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px;
+}
+
+.work-column{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:22px;
+padding:18px;
+backdrop-filter:blur(12px);
+}
+
+.work-title{
+font-size:18px;
+font-weight:800;
+margin-bottom:14px;
+}
+
+.mini-calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+}
+
+.mini-day{
+height:42px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,.06);
+cursor:pointer;
+font-weight:700;
+transition:.25s;
+}
+
+.mini-day:hover{
+transform:scale(1.08);
+background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+color:white;
+}
+
+.mini-day.has-note{
+background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+color:white;
+box-shadow:0 0 14px rgba(168,85,247,.35);
+}
+</style>
+
+
+<style>
+/* ===== BETTER SHIFT COLORS ===== */
+
+/* กะ1 */
+.sb-shift_morning,
+.legend-shift_morning{
+background:linear-gradient(135deg,#06b6d4,#0ea5e9)!important;
+color:white!important;
+border:none!important;
+}
+
+/* กะ2 */
+.sb-shift_evening,
+.legend-shift_evening{
+background:linear-gradient(135deg,#7c3aed,#a855f7)!important;
+color:white!important;
+border:none!important;
+}
+
+/* ทำงาน */
+.sb-work,
+.legend-work{
+background:linear-gradient(135deg,#10b981,#22c55e)!important;
+color:white!important;
+border:none!important;
+}
+
+/* วันหยุด */
+.sb-off,
+.legend-off{
+background:linear-gradient(135deg,#f59e0b,#fbbf24)!important;
+color:#111827!important;
+border:none!important;
+}
+
+/* ลาป่วย */
+.sb-leave_sick,
+.legend-leave_sick{
+background:linear-gradient(135deg,#ef4444,#f87171)!important;
+color:white!important;
+border:none!important;
+}
+
+/* ลากิจ */
+.sb-leave_personal,
+.legend-leave_personal{
+background:linear-gradient(135deg,#fb923c,#f97316)!important;
+color:white!important;
+border:none!important;
+}
+
+/* ลาพักร้อน */
+.sb-leave_vacation,
+.legend-leave_vacation{
+background:linear-gradient(135deg,#14b8a6,#2dd4bf)!important;
+color:white!important;
+border:none!important;
+}
+
+/* วันหยุดพิเศษ */
+.sb-special,
+.legend-special{
+background:linear-gradient(135deg,#be123c,#e11d48)!important;
+color:white!important;
+border:none!important;
+}
+
+/* make legend clearer */
+.legend-badge{
+font-weight:700!important;
+padding:10px 16px!important;
+border-radius:14px!important;
+box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+</style>
+
+
+<style>
+/* ===== LEGEND MATCH TABLE COLORS ===== */
+
+/* กะ1 */
+.legend-badge.sb-shift_morning,
+.legend-badge.legend-shift_morning{
+background:linear-gradient(135deg,#06b6d4,#0ea5e9)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(14,165,233,.25);
+}
+
+/* กะ2 */
+.legend-badge.sb-shift_evening,
+.legend-badge.legend-shift_evening{
+background:linear-gradient(135deg,#7c3aed,#a855f7)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(168,85,247,.25);
+}
+
+/* ทำงาน */
+.legend-badge.sb-work,
+.legend-badge.legend-work{
+background:linear-gradient(135deg,#10b981,#22c55e)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(34,197,94,.25);
+}
+
+/* วันหยุด */
+.legend-badge.sb-off,
+.legend-badge.legend-off{
+background:linear-gradient(135deg,#f59e0b,#fbbf24)!important;
+color:#111827!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(251,191,36,.25);
+}
+
+/* ลาป่วย */
+.legend-badge.sb-leave_sick,
+.legend-badge.legend-leave_sick{
+background:linear-gradient(135deg,#ef4444,#f87171)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(248,113,113,.25);
+}
+
+/* ลากิจ */
+.legend-badge.sb-leave_personal,
+.legend-badge.legend-leave_personal{
+background:linear-gradient(135deg,#fb923c,#f97316)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(249,115,22,.25);
+}
+
+/* ลาพักร้อน */
+.legend-badge.sb-leave_vacation,
+.legend-badge.legend-leave_vacation{
+background:linear-gradient(135deg,#14b8a6,#2dd4bf)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(45,212,191,.25);
+}
+
+/* วันหยุดพิเศษ */
+.legend-badge.sb-special,
+.legend-badge.legend-special{
+background:linear-gradient(135deg,#be123c,#e11d48)!important;
+color:#fff!important;
+border:none!important;
+box-shadow:0 4px 12px rgba(225,29,72,.25);
+}
+
+/* common legend style */
+.legend-badge{
+font-weight:800!important;
+padding:10px 18px!important;
+border-radius:14px!important;
+min-width:110px;
+text-align:center;
+}
+</style>
+
+
+<style>
+
+/* ===== PASTEL MATCH THEME ===== */
+
+*{
+-webkit-print-color-adjust: exact !important;
+print-color-adjust: exact !important;
+}
+
+/* กะ 1 */
+.sb-shift_morning,
+.legend-shift_morning{
+background:#9fdcff !important;
+color:#215272 !important;
+border:1px solid #7bc9f5 !important;
+}
+
+/* กะ 2 */
+.sb-shift_evening,
+.legend-shift_evening{
+background:#d8c7ff !important;
+color:#533a8a !important;
+border:1px solid #bea6ff !important;
+}
+
+/* ทำงาน */
+.sb-work,
+.legend-work{
+background:#bff3d4 !important;
+color:#246b47 !important;
+border:1px solid #95e3b6 !important;
+}
+
+/* วันหยุด */
+.sb-off,
+.legend-off{
+background:#ffe9a8 !important;
+color:#7a5600 !important;
+border:1px solid #ffd76d !important;
+}
+
+/* ลาป่วย */
+.sb-leave_sick,
+.legend-leave_sick{
+background:#ffd0d7 !important;
+color:#8c3340 !important;
+border:1px solid #ffb3bf !important;
+}
+
+/* ลากิจ */
+.sb-leave_personal,
+.legend-leave_personal{
+background:#ffd9b5 !important;
+color:#8a4d16 !important;
+border:1px solid #ffc58c !important;
+}
+
+/* ลาพักร้อน */
+.sb-leave_vacation,
+.legend-leave_vacation{
+background:#c7f5ec !important;
+color:#1c6b5d !important;
+border:1px solid #9be8d8 !important;
+}
+
+/* วันหยุดพิเศษ */
+.sb-special,
+.legend-special{
+background:#ffb6cf !important;
+color:#7d1742 !important;
+border:1px solid #ff8fb4 !important;
+}
+
+/* legend */
+.legend-badge{
+font-weight:800 !important;
+padding:12px 20px !important;
+border-radius:16px !important;
+min-width:120px;
+text-align:center;
+font-size:15px;
+box-shadow:none !important;
+}
+</style>
+
+
+
+<style>
+/* ===== SMALLER LEGEND ===== */
+
+.legend-badge{
+padding:8px 14px !important;
+min-width:92px !important;
+font-size:13px !important;
+border-radius:12px !important;
+font-weight:700 !important;
+transform:scale(.92);
+}
+
+.legend-wrap,
+.shift-legend,
+.legend-container{
+gap:8px !important;
+}
+
+@media(max-width:768px){
+
+.legend-badge{
+padding:7px 12px !important;
+min-width:82px !important;
+font-size:12px !important;
+}
+
+}
+</style>
+
+
+<style>
+
+
+
+<style>
+
+
+
+<style>
+
+
+
+<style>
+/* ===== ULTRA ROUNDED UI ===== */
+
+/* main cards */
+.roster-card,
+.notification-panel,
+.emp-summary-card,
+.cal-card,
+.work-column{
+border-radius:34px !important;
+overflow:hidden;
+}
+
+/* table outer */
+table{
+border-collapse:separate !important;
+border-spacing:0 !important;
+overflow:hidden;
+border-radius:28px !important;
+}
+
+/* header corners */
+thead tr:first-child th:first-child{
+border-top-left-radius:24px !important;
+}
+
+thead tr:first-child th:last-child{
+border-top-right-radius:24px !important;
+}
+
+/* bottom corners */
+tbody tr:last-child td:first-child{
+border-bottom-left-radius:24px !important;
+}
+
+tbody tr:last-child td:last-child{
+border-bottom-right-radius:24px !important;
+}
+
+/* shift cells */
+.shift-btn,
+.sum-badge{
+border-radius:18px !important;
+}
+
+/* legend */
+.legend-badge{
+border-radius:18px !important;
+}
+
+/* tabs */
+.view-btn{
+border-radius:22px !important;
+}
+
+/* weather */
+.weather-card,
+.weather-modal{
+border-radius:34px !important;
+}
+
+/* inputs */
+input,
+textarea,
+select{
+border-radius:18px !important;
+}
+
+/* modal */
+.modal-box{
+border-radius:30px !important;
+}
+
+/* mini calendar */
+.mini-day{
+border-radius:16px !important;
+}
+
+/* employee summary */
+.emp-stat-item{
+border-radius:18px !important;
+overflow:hidden;
+}
+
+/* soften table */
+.shift-cell{
+padding:6px !important;
+}
+
+/* smooth rows */
+tbody tr{
+overflow:hidden;
+}
+
+/* floating sections */
+.roster-card:hover,
+.notification-panel:hover,
+.emp-summary-card:hover{
+transform:translateY(-4px) scale(1.005);
+}
+</style>
+
+
+<style>
+/* ===== CLEAN SMOOTH UI ===== */
+
+*{
+transition:
+background-color .25s ease,
+color .25s ease,
+box-shadow .25s ease,
+border-color .25s ease;
+}
+
+.view-btn:hover,
+.legend-badge:hover,
+.shift-btn:hover,
+.mini-day:hover{
+transform:translateY(-2px);
+}
+
+.roster-card,
+.notification-panel,
+.emp-summary-card,
+.work-column{
+transition:
+box-shadow .25s ease,
+transform .25s ease;
+}
+
+.roster-card:hover,
+.notification-panel:hover,
+.emp-summary-card:hover{
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+</style>
+
 </head>
 <body class="theme-classic">
 
@@ -1615,6 +2098,7 @@ body.theme-nature .notification-panel *{
     <div class="view-switcher no-print">
         <button class="view-btn active" id="btn-table" onclick="switchView('table')">📋 มุมมองตารางรวม</button>
         <button class="view-btn" id="btn-calendar" onclick="switchView('calendar')">📆 มุมมองปฏิทินรายบุคคล</button>
+        <button class="view-btn" id="btn-workcalendar" onclick="switchView('workcalendar')">🗂️ ปฏิทินงาน</button>
     </div>
 
     <!-- VIEW 1: ROSTER TABLE -->
@@ -1626,14 +2110,14 @@ body.theme-nature .notification-panel *{
                     <div class="roster-hint">คลิกที่ช่องในตารางเพื่อปรับเปลี่ยนสถานะการทำงาน</div>
                 </div>
                 <div class="legend-row">
-                    <span class="legend-badge" style="background:#f0faf5;color:#166534;border-color:#86efac">กะ 1</span>
-                    <span class="legend-badge" style="background:#eef2ff;color:#3730a3;border-color:#818cf8">กะ 2</span>
-                    <span class="legend-badge" style="background:#f0fdf4;color:#14532d;border-color:#22c55e">ทำงาน</span>
-                    <span class="legend-badge" style="background:#fef9ec;color:#92400e;border-color:#fbbf24">วันหยุด</span>
-                    <span class="legend-badge" style="background:#eff6ff;color:#1e40af;border-color:#60a5fa">ลาป่วย</span>
-                    <span class="legend-badge" style="background:#f5f3ff;color:#5b21b6;border-color:#a78bfa">ลากิจพิเศษ</span>
-                    <span class="legend-badge" style="background:#ecfdf5;color:#065f46;border-color:#34d399">ลาพักร้อน</span>
-                    <span class="legend-badge" style="background:#800020;color:#fff">วันหยุดพิเศษ</span>
+                    <span class="legend-badge sb-shift_morning">☀️ กะ 1</span>
+                    <span class="legend-badge sb-shift_evening">🌙 กะ 2</span>
+                    <span class="legend-badge sb-work">💼 ทำงาน</span>
+                    <span class="legend-badge sb-off">🏖️ วันหยุด</span>
+                    <span class="legend-badge sb-leave_sick">🏥 ลาป่วย</span>
+                    <span class="legend-badge sb-leave_personal">👤 ลากิจ</span>
+                    <span class="legend-badge sb-leave_vacation">🌴 ลาพักร้อน</span>
+                    <span class="legend-badge sb-special">✨ วันหยุดพิเศษ</span>
                 </div>
             </div>
             <div class="table-scroll">
@@ -1700,7 +2184,48 @@ body.theme-nature .notification-panel *{
     </div>
 
 
-    <!-- Notes Section -->
+    
+<!-- VIEW 3: WORK CALENDAR -->
+<div id="view-workcalendar" style="display:none;margin-bottom:24px;">
+    <div class="roster-card">
+        <div class="roster-card-header">
+            <div>
+                <div class="roster-card-title">🗂️ ปฏิทินงาน</div>
+                <div class="roster-hint">กดวันที่เพื่อเพิ่มรายละเอียดงาน</div>
+            </div>
+        </div>
+
+        
+<div style="padding:20px;">
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
+<select id="work-month" class="cal-select"></select>
+<select id="work-year" class="cal-select"></select>
+</div>
+
+            <div class="work-grid">
+
+                <div class="work-column">
+                    <div class="work-title">🖥️ จอ 6</div>
+                    <div class="mini-calendar" id="calendar-screen6"></div>
+                </div>
+
+                <div class="work-column">
+                    <div class="work-title">🏢 ศธ 10</div>
+                    <div class="mini-calendar" id="calendar-sor10"></div>
+                </div>
+
+                <div class="work-column">
+                    <div class="work-title">👨‍💼 คุณเสนีย์</div>
+                    <div class="mini-calendar" id="calendar-sanee"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notes Section -->
     <div class="roster-card" style="margin-top:24px;">
         <div class="roster-card-header">
             <div>
@@ -2617,7 +3142,7 @@ async function saveAsImage() {
         // ขยายตารางให้เห็นครบทุกคอลัมน์
         const tableScroll = rosterClone.querySelector('.table-scroll');
         if (tableScroll) {
-            tableScroll.style.overflowX = 'visible';
+            tableScroll.style.overflowX = '';
             tableScroll.style.width = 'max-content';
         }
 
@@ -2937,8 +3462,8 @@ window.addEventListener('load', function(){
 <div class="theme-floating float-3">☁️</div>
 
 
-<div class="sparkle sparkle-1">✨</div>
-<div class="sparkle sparkle-2">💫</div>
+<div class=" -1">✨</div>
+<div class=" -2">💫</div>
 
 
 <div class="character-float char-1">🐰</div>
@@ -3159,6 +3684,363 @@ window.addEventListener('load',()=>{
     setTimeout(randomLightning,1500);
 });
 </script>
+
+
+
+<script>
+const workCalendars = [
+{id:'screen6',title:'จอ 6'},
+{id:'sor10',title:'ศธ 10'},
+{id:'sanee',title:'คุณเสนีย์'}
+];
+
+let activeWorkKey='';
+
+function getWorkDaysInMonth(){
+const month=parseInt(document.getElementById('work-month').value);
+const year=parseInt(document.getElementById('work-year').value)-543;
+return new Date(year, month, 0).getDate();
+}
+
+function renderWorkCalendars(){
+
+const totalDays=getWorkDaysInMonth();
+
+workCalendars.forEach(cal=>{
+
+const container=document.getElementById('calendar-'+cal.id);
+
+if(!container) return;
+
+container.innerHTML='';
+
+for(let d=1; d<=totalDays; d++){
+
+const month=document.getElementById('work-month').value;
+const year=document.getElementById('work-year').value;
+
+const key='work_'+cal.id+'_'+year+'_'+month+'_'+d;
+
+const note=localStorage.getItem(key);
+
+const div=document.createElement('div');
+
+div.className='mini-day';
+
+if(note){
+div.classList.add('has-note');
+}
+
+div.innerText=d;
+
+div.onclick=()=>{
+
+activeWorkKey=key;
+
+document.getElementById('work-modal').style.display='flex';
+
+document.getElementById('work-modal-title').innerText=
+cal.title+' วันที่ '+d;
+
+document.getElementById('work-note-input').value=
+localStorage.getItem(key)||'';
+};
+
+container.appendChild(div);
+
+}
+
+});
+
+}
+
+function saveWorkNote(){
+
+const val=document.getElementById('work-note-input').value;
+
+localStorage.setItem(activeWorkKey,val);
+
+document.getElementById('work-modal').style.display='none';
+
+renderWorkCalendars();
+updateWorkNotifications();
+
+}
+
+function closeWorkModal(){
+document.getElementById('work-modal').style.display='none';
+}
+
+const oldSwitchView = switchView;
+
+switchView = function(view){
+
+document.getElementById('view-table').style.display='none';
+document.getElementById('view-calendar').style.display='none';
+document.getElementById('view-workcalendar').style.display='none';
+
+document.querySelectorAll('.view-btn').forEach(btn=>{
+btn.classList.remove('active');
+});
+
+if(view==='table'){
+document.getElementById('view-table').style.display='block';
+document.getElementById('btn-table').classList.add('active');
+}
+
+if(view==='calendar'){
+document.getElementById('view-calendar').style.display='block';
+document.getElementById('btn-calendar').classList.add('active');
+}
+
+if(view==='workcalendar'){
+document.getElementById('view-workcalendar').style.display='block';
+document.getElementById('btn-workcalendar').classList.add('active');
+renderWorkCalendars();
+updateWorkNotifications();
+}
+
+};
+
+window.addEventListener('load',()=>{
+
+const monthSel=document.getElementById('work-month');
+const yearSel=document.getElementById('work-year');
+
+if(monthSel){
+
+for(let m=1;m<=12;m++){
+const op=document.createElement('option');
+op.value=m;
+op.text='เดือน '+m;
+if(m===6) op.selected=true;
+monthSel.appendChild(op);
+}
+
+monthSel.onchange=renderWorkCalendars;
+}
+
+if(yearSel){
+
+for(let y=2568;y<=2575;y++){
+const op=document.createElement('option');
+op.value=y;
+op.text=y;
+if(y===2569) op.selected=true;
+yearSel.appendChild(op);
+}
+
+yearSel.onchange=renderWorkCalendars;
+}
+
+renderWorkCalendars();
+updateWorkNotifications();
+
+});
+</script>
+
+
+<div id="work-modal" class="modal-overlay" style="display:none;">
+<div class="modal-box">
+<div class="modal-header">
+<div>
+<div class="modal-title" id="work-modal-title">รายละเอียดงาน</div>
+<div class="modal-subtitle">เพิ่มรายละเอียดของวันนั้น</div>
+</div>
+<button class="modal-close" onclick="closeWorkModal()">✕</button>
+</div>
+
+<div class="modal-body">
+<textarea id="work-note-input"
+class="cal-select"
+style="width:100%;min-height:160px;"
+placeholder="เพิ่มรายละเอียดงาน..."></textarea>
+</div>
+
+<div class="modal-footer">
+<button class="btn-header btn-print" onclick="saveWorkNote()">💾 บันทึก</button>
+</div>
+</div>
+</div>
+
+
+<script>
+function updateWorkNotifications(){
+
+const list=document.getElementById('notification-list');
+if(!list) return;
+
+const workNotifications=[];
+
+const month=document.getElementById('work-month')?.value || '6';
+const year=document.getElementById('work-year')?.value || '2569';
+
+workCalendars.forEach(cal=>{
+
+const totalDays=getWorkDaysInMonth();
+
+for(let d=1; d<=totalDays; d++){
+
+const key='work_'+cal.id+'_'+year+'_'+month+'_'+d;
+
+const note=localStorage.getItem(key);
+
+if(note && note.trim()!==''){
+
+workNotifications.push(`
+<div class="notification-item">
+📌 ${cal.title} • วันที่ ${d}
+<br>
+<span style="font-size:12px;opacity:.85;">
+${note.substring(0,60)}
+</span>
+</div>
+`);
+
+}
+
+}
+
+});
+
+if(workNotifications.length===0){
+
+list.innerHTML=`
+<div class="notification-item">
+ยังไม่มีการแจ้งเตือนจากปฏิทินงาน
+</div>
+`;
+
+}else{
+
+list.innerHTML=workNotifications.join('');
+
+}
+
+}
+</script>
+
+
+<script>
+/* ===== SCROLL REVEAL ===== */
+
+function revealOnScroll(){
+
+const reveals=document.querySelectorAll(
+'.roster-card,.cal-card,.emp-summary-card,.notification-panel,.work-column'
+);
+
+reveals.forEach(el=>{
+
+const top=el.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 60){
+el.classList.add('active');
+}
+
+});
+
+}
+
+window.addEventListener('scroll',revealOnScroll);
+window.addEventListener('load',revealOnScroll);
+
+/* ===== RANDOM SPARKLES ===== */
+
+window.addEventListener('load',()=>{
+
+for(let i=0;i<20;i++){
+
+const s=document.createElement('div');
+
+s.className='';
+
+s.style.left=Math.random()*100+'vw';
+s.style.top=(Math.random()*100)+'vh';
+
+s.style.animationDelay=(Math.random()*5)+'s';
+
+document.body.appendChild(s);
+
+}
+
+});
+</script>
+
+
+<script>
+/* ===== ULTRA UI ANIMATION ENGINE ===== */
+
+window.addEventListener('load',()=>{
+
+/* reveal animation */
+const items=document.querySelectorAll(
+'.roster-card,.emp-summary-card,.notification-panel,.work-column,tr'
+);
+
+items.forEach(el=>{
+el.classList.add('');
+});
+
+const reveal=()=>{
+
+items.forEach(el=>{
+
+const top=el.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 40){
+el.classList.add('');
+}
+
+});
+
+};
+
+window.addEventListener('scroll',reveal);
+reveal();
+
+/* create cute stars */
+const emojis=['✨','⭐','💖','🌸'];
+
+for(let i=0;i<24;i++){
+
+const s=document.createElement('div');
+
+s.className='';
+
+s.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+
+s.style.left=Math.random()*100+'vw';
+s.style.top=Math.random()*100+'vh';
+
+s.style.animationDelay=(Math.random()*8)+'s';
+s.style.animationDuration=(4+Math.random()*5)+'s';
+
+document.body.appendChild(s);
+
+}
+
+/* mouse parallax */
+document.addEventListener('mousemove',(e)=>{
+
+const x=(e.clientX/window.innerWidth-.5)*10;
+const y=(e.clientY/window.innerHeight-.5)*10;
+
+document.querySelectorAll('.roster-card,.weather-card').forEach(card=>{
+
+card.style.transform=
+'translate('+x*.15+'px,'+y*.15+'px)';
+
+});
+
+});
+
+});
+</script>
+
+
+<script>
+
 
 </body>
 </html>
