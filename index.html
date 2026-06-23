@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ตารางปฏิบัติงาน มิถุนายน 2569</title>
+    <title>ตารางปฏิบัติงาน กรกฎาคม 2569</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -927,7 +927,50 @@
 
 </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js">
+
+function updateAllMonthLabels() {
+    const monthNames = [
+        "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
+        "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"
+    ];
+
+    const monthText = `${monthNames[currentMonth]} ${currentYear + 543}`;
+
+    const headerSub = document.querySelector(".header-title p");
+    if (headerSub) headerSub.textContent = `ประจำเดือน ${monthText}`;
+
+    const tableTitle = document.querySelector("#view-table .roster-card-title");
+    if (tableTitle) tableTitle.textContent = `ตารางปฏิบัติงานประจำเดือน${monthText}`;
+
+    const calSub = document.querySelector("#cal-name-header div:last-child");
+    if (calSub) calSub.textContent = monthText;
+
+    const summaryTitle = document.querySelector(".summary-heading");
+    if (summaryTitle) summaryTitle.textContent = `📊 สถิติสรุปรายบุคคล (${monthText})`;
+
+    const leftMonth = document.querySelector(".thead-date .col-name");
+    if (leftMonth) leftMonth.textContent = monthText;
+}
+ ${year}`;
+
+    const headerSub = document.querySelector(".header-title p");
+    if (headerSub) headerSub.textContent = `ประจำเดือน${monthText}`;
+
+    const tableTitle = document.querySelector("#view-table .roster-card-title");
+    if (tableTitle) tableTitle.textContent = `ตารางปฏิบัติงานประจำเดือน${monthText}`;
+
+    const calSub = document.querySelector("#cal-name-header div:last-child");
+    if (calSub) calSub.textContent = monthText;
+
+    const summaryTitle = document.querySelector(".summary-heading");
+    if (summaryTitle) summaryTitle.textContent = `📊 สถิติสรุปรายบุคคล (${monthText})`;
+
+    const leftMonth = document.querySelector(".thead-date .col-name");
+    if (leftMonth) leftMonth.textContent = monthText;
+}
+
+</script>
 
 <style>
 /* ===== Cute Themes ===== */
@@ -2007,7 +2050,7 @@ box-shadow:0 12px 30px rgba(0,0,0,.08);
             <div class="header-icon">📅</div>
             <div class="header-title">
                 <h1>ตารางปฏิบัติงานและวันหยุด</h1>
-                <p>ประจำเดือนมิถุนายน พ.ศ. 2569 (June 2026)</p>
+                <p>ประจำเดือนแบบ Dynamic</p>
             </div>
         </div>
         <div class="header-actions">
@@ -2106,7 +2149,7 @@ box-shadow:0 12px 30px rgba(0,0,0,.08);
         <div class="roster-card">
             <div class="roster-card-header">
                 <div>
-                    <div class="roster-card-title">ตารางปฏิบัติงานประจำเดือนมิถุนายน 2569</div>
+                    <div class="roster-card-title">ตารางปฏิบัติงานประจำเดือน</div>
                     <div class="roster-hint">คลิกที่ช่องในตารางเพื่อปรับเปลี่ยนสถานะการทำงาน</div>
                 </div>
                 <div class="legend-row">
@@ -2144,7 +2187,7 @@ box-shadow:0 12px 30px rgba(0,0,0,.08);
 
 <!-- Employee Summary Cards -->
         <div class="summary-section no-print">
-            <div class="summary-heading">📊 สถิติสรุปรายบุคคล (มิถุนายน 2569)</div>
+            <div class="summary-heading">📊 สถิติสรุปรายบุคคล</div>
             <div class="summary-grid" id="emp-summary-grid"></div>
         </div>
     </div>
@@ -2166,7 +2209,7 @@ box-shadow:0 12px 30px rgba(0,0,0,.08);
             </div>
             <div id="cal-name-header" style="padding:20px 24px 0;text-align:center">
                 <div id="cal-emp-name" style="font-size:18px;font-weight:800;color:var(--text-primary)"></div>
-                <div style="font-size:12px;color:var(--text-muted);margin-top:3px">มิถุนายน พ.ศ. 2569</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:3px"></div>
             </div>
             <div style="padding:16px 24px 24px">
                 <div class="cal-dow-header">
