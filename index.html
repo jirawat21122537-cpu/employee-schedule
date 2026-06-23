@@ -4104,8 +4104,8 @@ async function sendLineTodayShift() {
             to: userId,
             messages: [{
                 type: "text",
-                text: `📅 วันนี้คุณเข้ากะ: ${todayShift}`
-            }]
+                text: "📅 วันนี้คุณเข้ากะ: " + todayShift   
+        }]
         })
     });
 }
