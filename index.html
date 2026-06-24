@@ -4095,6 +4095,9 @@ if (!myData) return;
 const today = new Date().getDate();
 const todayShift = myData.schedule?.[today - 1] || "ไม่มีข้อมูล";
 
+console.log("Today shift =", todayShift);
+alert("Today shift = " + todayShift);
+
 await fetch("https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json", {
   method: "PATCH",
   headers: {
