@@ -4096,6 +4096,9 @@ if (!myData) return;
 const today = new Date().getDate();
 const todayShift = myData.schedule?.[today - 1] || "ไม่มีข้อมูล";
 
+alert("วันนี้ index = " + (today - 1));
+alert("ค่าที่อ่านได้ = " + todayShift);
+
 console.log("Today shift =", todayShift);
 alert("Today shift = " + todayShift);
 
