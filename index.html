@@ -4093,6 +4093,16 @@ if (!myData) return;
 const today = new Date().getDate();
 const todayShift = myData.schedule?.[today - 1] || "ไม่มีข้อมูล";
 
+await fetch("https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json", {
+  method: "PATCH",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    leo_shift: todayShift
+  })
+});
+
   await fetch("https://api.line.me/v2/bot/message/push", {
         method: "POST",
         headers: {
@@ -4109,10 +4119,9 @@ const todayShift = myData.schedule?.[today - 1] || "ไม่มีข้อม�
     });
 }
 
-window.addEventListener("load", () => {
-    setTimeout(sendLineTodayShift, 1500);
+window.addEventListener("load", async () => {
+    await sendLineTodayShift();
 });
-</script>
 
 </body>
 </html>
