@@ -2579,6 +2579,8 @@ function loadData() {
 }
 function saveData() {
     localStorage.setItem(getStorageKey(), JSON.stringify(employees));
+    sendLineTodayShift(); 
+
 }
 function deepCopy(x) { return JSON.parse(JSON.stringify(x)); }
 function resetToDefault() {
@@ -4124,11 +4126,4 @@ await fetch("https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebase
     });
 }
 
-window.addEventListener("load", async () => {
-    setTimeout(async () => {
-        await sendLineTodayShift();
-    }, 3000);
-});
 
-</body>
-</html>
