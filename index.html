@@ -4087,6 +4087,8 @@ async function sendLineTodayShift() {
     const token = "Qwpyc2A5C9ZZ1UTzqFcfU1otejZ25AWKAZQJY6tm1E41/xfs0zKoZiWNGeUF5mvTpI7Z5Ez6VDxxcnvRYC7rLPRg9lqXmn1KD2w+xs4Idi4kFBH+jzEuhrunEiMNqTwW0xTJzgkOmoktlPty/oVQHgdB04t89/1O/w1cDnyilFU=";
     const userId = "Uaade64c9fe935d1fc6a732970ccda037";
 
+await loadData();
+
      const myData = employees.find(emp => emp.name.includes("จิรวัฒน์"));
 if (!myData) return;
 
