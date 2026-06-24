@@ -4120,7 +4120,9 @@ await fetch("https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebase
 }
 
 window.addEventListener("load", async () => {
-    await sendLineTodayShift();
+    setTimeout(async () => {
+        await sendLineTodayShift();
+    }, 3000);
 });
 
 </body>
