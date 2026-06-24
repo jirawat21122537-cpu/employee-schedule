@@ -2351,13 +2351,13 @@ function updateCalendarMeta() {
 const initialEmployees = [
     {
         id: 'emp1',
-        name: 'นันทรา (หลิว)',
+        name: 'มินตรา (หมิว)',
         colorHex: '#ef4444',
         shifts: {}
     },
     {
         id: 'emp2',
-        name: 'ชัชวัลย์ (ดีโอ)',
+        name: 'จิรวัฒน์ (ลีโอ)',
         colorHex: '#3b82f6',
         shifts: {}
     },
@@ -2369,7 +2369,7 @@ const initialEmployees = [
     },
     {
         id: 'emp4',
-        name: 'ธรรศ (ธรรศ)',
+        name: 'ธรรมธนาธิป (ธรรม์)',
         colorHex: '#f59e0b',
         shifts: {}
     }
@@ -3018,7 +3018,17 @@ fetch("https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedataba
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
-    leo_shift: status
+    leo_shift: 
+  status === "work" ? "ทำงาน" :
+  status === "shift_morning" ? "กะ1" :
+  status === "shift_evening" ? "กะ2" :
+  status === "off" ? "หยุด" :
+  status === "leave_sick" ? "ลาป่วย" :
+  status === "leave_personal" ? "ลากิจ" :
+  status === "leave_special" ? "ลาพิเศษ" :
+  status === "leave_vacation" ? "พักร้อน" :
+  status === "holiday_co" ? "หยุดพิเศษ" :
+  status
   })
 });
     }
