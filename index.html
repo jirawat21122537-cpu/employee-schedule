@@ -3441,6 +3441,29 @@ try {
     }, (err) => {
       console.error("Realtime listener error:", err);
     });
+// Sync กะจาก Realtime Database
+const rtdbUrl = "https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json";
+setInterval(async () => {
+  try {
+    const res = await fetch(rtdbUrl);
+    const todayData = await res.json();
+    if (!todayData) return;
+    Object.keys(todayData).forEach(day => {
+      const dayData = todayData[day];
+      employees.forEach(emp => {
+        if (emp.name && emp.name.includes("ลีโอ")) {
+          if (!emp.shifts) emp.shifts = {};
+          if (dayData.leo_shift) {
+            emp.shifts[day] = dayData.leo_shift;
+          }
+        }
+      });
+    });
+    renderWorkCalendars();
+  } catch(e) {
+    console.error("RTDB sync error:", e);
+  }
+}, 10000);
   };
 
   // เมื่อเปลี่ยนเดือน/ปี ให้เริ่ม listener ใหม่
