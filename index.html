@@ -3441,6 +3441,7 @@ try {
     }, (err) => {
       console.error("Realtime listener error:", err);
     });
+alert("RTDB sync started");
 // Sync กะจาก Realtime Database
 const rtdbUrl = "https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json";
 setInterval(async () => {
