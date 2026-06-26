@@ -3455,8 +3455,8 @@ setInterval(async () => {
 alert("data: " + JSON.stringify(todayData));
 console.log("employees:", employees.map(e => e.name));
 console.log("todayData:", todayData);
-    Object.keys(todayData).forEach(day => {
-      const dayData = todayData[day];
+    Object.keys(todayData).filter(k => !isNaN(k)).forEach(day => { 
+ const dayData = todayData[day];
       employees.forEach(emp => {
         if (emp.name && (emp.name.includes("ลีโอ") || emp.name.includes("Leo") || emp.name.includes("leo"))) {
           if (!emp.shifts) emp.shifts = {};
