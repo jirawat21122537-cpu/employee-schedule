@@ -3441,7 +3441,7 @@ try {
     }, (err) => {
       console.error("Realtime listener error:", err);
     });
-alert("RTDB sync started\nพนักงาน: " + employees.map(e => e.name).join(", "));
+
 // Sync กะจาก Realtime Database
 const rtdbUrl = "https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json";
 setInterval(async () => {
@@ -3457,7 +3457,8 @@ console.log("todayData:", todayData);
         if (emp.name && (emp.name.includes("ลีโอ") || emp.name.includes("Leo") || emp.name.includes("leo"))) {
           if (!emp.shifts) emp.shifts = {};
           if (dayData.leo_shift) {
-            emp.shifts[day] = dayData.leo_shift;
+            const dayIndex = parseInt(day) - 1;
+emp.shifts[dayIndex] = dayData.leo_shift;
           }
         }
       });
