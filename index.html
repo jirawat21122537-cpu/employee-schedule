@@ -3460,9 +3460,11 @@ console.log("todayData:", todayData);
           if (!emp.shifts) emp.shifts = [];
 if (!Array.isArray(emp.shifts)) emp.shifts = Object.values(emp.shifts);
           if (dayData.leo_shift) {
-            const dayIndex = parseInt(day) - 1;
-alert("dayIndex: " + dayIndex + " value: " + dayData.leo_shift + " shifts length: " + emp.shifts.length);
-emp.shifts[dayIndex] = dayData.leo_shift;
+            const now2 = new Date();
+const year2 = now2.getFullYear() - 543;
+const month2 = now2.getMonth() + 1;
+const key = 'work_emp2_' + year2 + '_' + month2 + '_' + parseInt(day);
+localStorage.setItem(key, dayData.leo_shift);
 renderWorkCalendars();
           }
         }
