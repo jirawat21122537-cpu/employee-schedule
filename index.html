@@ -3457,7 +3457,8 @@ console.log("todayData:", todayData);
  const dayData = todayData[day];
       employees.forEach(emp => {
         if (emp.name && (emp.name.includes("ลีโอ") || emp.name.includes("Leo") || emp.name.includes("leo"))) {
-          if (!emp.shifts) emp.shifts = {};
+          if (!emp.shifts) emp.shifts = [];
+if (!Array.isArray(emp.shifts)) emp.shifts = Object.values(emp.shifts);
           if (dayData.leo_shift) {
             const dayIndex = parseInt(day) - 1;
 emp.shifts[dayIndex] = dayData.leo_shift;
