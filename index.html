@@ -3463,6 +3463,7 @@ if (!Array.isArray(emp.shifts)) emp.shifts = Object.values(emp.shifts);
             const dayIndex = parseInt(day) - 1;
 alert("dayIndex: " + dayIndex + " value: " + dayData.leo_shift + " shifts length: " + emp.shifts.length);
 emp.shifts[dayIndex] = dayData.leo_shift;
+renderWorkCalendars();
           }
         }
       });
