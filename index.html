@@ -3443,7 +3443,10 @@ try {
     });
 
 // Sync กะจาก Realtime Database
-const rtdbUrl = "https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/today.json";
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1;
+const rtdbUrl = `https://marketing-schedule-v2-default-rtdb.asia-southeast1.firebasedatabase.app/schedule/${year}/${month}.json`;
 setInterval(async () => {
   try {
     const res = await fetch(rtdbUrl);
