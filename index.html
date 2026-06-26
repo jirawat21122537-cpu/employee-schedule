@@ -3441,7 +3441,6 @@ try {
     }, (err) => {
       console.error("Realtime listener error:", err);
     });
-alert("setInterval starting");
 // Sync กะจาก Realtime Database
 const now = new Date();
 const year = now.getFullYear();
@@ -3452,7 +3451,6 @@ setInterval(async () => {
     const res = await fetch(rtdbUrl);
     const todayData = await res.json();
     if (!todayData) return;
-alert("data: " + JSON.stringify(todayData));
 console.log("employees:", employees.map(e => e.name));
 console.log("todayData:", todayData);
     Object.keys(todayData).filter(k => !isNaN(k)).forEach(day => { 
